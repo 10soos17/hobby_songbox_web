@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="js/top.js"></script>
+    <link rel="stylesheet" href="css/top.css">
+
+    <script src="js/song.js"></script>
+    <link rel="stylesheet" href="css/song.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/iframe.js"></script>
+    <link rel="stylesheet" href="css/iframe.css">
+
+    <title>i_frame</title>
+
+  </head>
+  <!--© ⧑⧒ ⧨⧩ ☀︎☼ ☽☾ ✴︎ ❊✼❉  ❄︎❆ ✻✽ ♛♕ ❥❤︎ ⟰⤊⬇︎ ◦● ≕≡ ⋯∶⋮ !-->
+  <body>
+    
+    <div class="dropdown" style="float:right;">
+
+      <button class="dropbtn">⋯</button>
+        <div class="dropdown-content" style="right:0;">
+
+          <a href="center.html" target=i_center>main</a>
+          <a href="song.html" target=i_center>song</a>
+          <a href="singer.html" target=i_center>singer</a>
+          <a href="mylist.html" target=i_center>mylist</a>
+          <a href="youtb.html" target=i_center>youtb</a>
+
+        </div>
+    </div>
+
+    <input type="button" id="changeColorBtn" value="✽" onclick="change_color(this);"
+        style="float:right; font-size: 20px; background-color:rgb(0,0,0,0);color:rgb(0, 250, 235,1);border:0px;">
+
+
+    <iframe id="top" name="i_top" src="top.html" allowfullscreen=true frameborder="0" width="93%" height="100px" style="border:0px solid gray;"></iframe>
+    <iframe id="center" name="i_center" src="center.html" allowfullscreen=true frameborder="0" width="100%" height="800px" style="border:0px solid gray;"></iframe>
+    <!--iframe src="side.html" id="side" name="i_side" allowfullscreen=true frameborder="0" width="10%" height="800px" style="border:0px solid gray;"></iframe!-->
+
+  </body>
+</html>

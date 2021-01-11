@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <mata charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="js/top.js"></script>
+    <link rel="stylesheet" href="css/top.css">
+
+    <script src="js/song.js"></script>
+    <link rel="stylesheet" href="css/song.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/iframe.js"></script>
+
+    <title>song_top</title>
+
+  </head>
+
+  <boby>
+
+    <!--===================playbtn!===================-->
+    <input id="pre" type="button" value="<<" onclick="">
+    <input id="stop" type="button" value=">" onclick="">
+    <input id="next" type="button" value=">>" onclick="">
+
+    <!--===================playbar!===================-->
+    <b class="slidecontainer">
+      <span id=plus>+<b id="play_plus">00:00</b></span>
+      <input class="slider" id="play_bar" type="range" min="1" max="100" value="50">
+      <span id=minus>-<b id="play_minus">00:00</b></span>
+    </b>
+
+    <!--===================title===================!-->
+    <b id="playtitle">playtitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</b>
+
+    <!--===================random & replay!===================-->
+    <input id="random"type="button" value="#" onclick="">
+    <input id="replay" type="button" value="@" onclick="">
+
+    <!--===================volumebar===================!-->
+    <b class="slidecontainer">
+      <span id=vol>Vol: <span id="vol_text"></span></span>
+      <input class="slider" id="vol_bar" type="range" min="1" max="100" value="50">
+    </b>
+    <!--===================voice===================!-->
+    <input id="voice" type="button" value="voice" onclick="">
+
+
+  </body>
+
+</html>

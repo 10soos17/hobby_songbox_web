@@ -1,0 +1,253 @@
+/*var invisible = 'rgb(0,0,0,0)';
+
+var white = 'rgb(255,255,255,1)';
+var black = 'rgb(0,0,0,1)';
+var lightgray = 'rgb(220,220,220,1)';
+var middlegray = 'rgb(200,200,200,1)';
+var deepgray = 'rgb(105, 105, 105,1)';
+
+var deepbrown = 'rgb(25, 11, 10,1)';
+var deepgreen = 'rgb(47,79,79,1)';
+var shinegreen = 'rgb(0, 250, 235,1)';
+
+var pastelpink = 'rgb(193,147,145,1)';//rgb(188, 143, 143,1)
+var red = 'rgb(128, 0, 0,1)';
+var pinkred = 'rgb(165,  42,  42,1)';
+var shinered = 'rgb(220, 20, 60,1)';*/
+/*===================html slider==============================================*/
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+
+  width: 200px;
+  height: 3px;
+
+  outline: none;
+  opacity: 0.8;
+  background: rgb(255,255,255,1);
+
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+
+  width: 7px;
+  height: 7px;
+
+  background: rgb(0, 250, 235,1);
+}
+
+.slider::-moz-range-thumb {
+  cursor: pointer;
+  width: 7px;
+  height: 7px;
+
+  background: rgb(0, 250, 235,1);
+}
+/*==============================custom========================================*/
+/*===================play & volume bar*/
+#plus {
+  font-size: 15px;
+  text-align: left;
+
+  color: rgb(0, 250, 235,1);
+}
+
+#play_plus {
+  font-size: 15px;
+  text-align: left;
+
+  width: 50px;
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  color: rgb(0, 250, 235,1);
+}
+
+#play_bar {
+  width:200px;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+}
+
+#minus {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color: rgb(0, 250, 235,1);
+}
+#play_minus {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color: rgb(0, 250, 235,1);
+}
+
+#vol {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color: rgb(0, 250, 235,1);
+}
+#vol_text {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color: rgb(0, 250, 235,1);
+}
+
+#vol_bar {
+  width:50px;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+}
+
+/*===================playbtn*/
+#pre {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+#stop {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+
+}
+#next {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+/*===================random & replay*/
+#random {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+#replay {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+
+/*===================gtts*/
+#voice {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+
+
+/*===================playing title*/
+#playtitle {
+  position: relative;
+  display: inline-block;
+
+  width:30%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  color:rgb(0, 250, 235,1);
+}

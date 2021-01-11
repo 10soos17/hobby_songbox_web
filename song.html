@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <mata charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="js/top.js"></script>
+    <link rel="stylesheet" href="css/top.css">
+
+    <script src="js/song.js"></script>
+    <link rel="stylesheet" href="css/song.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/iframe.js"></script>
+
+    <title>song_center</title>
+  </head>
+
+  <boby>
+    <div>
+      <h1 id="songTitle" style="color:rgb(0, 250, 235,1);">song list</h1>
+      <input type="button" id="checksong_playBtn" value="play" onclick="play_checkedsong();"
+          style="float:right; font-size: 20px; background-color:rgb(0,0,0,0);color:rgb(0, 250, 235,1);border:0px;">
+    </div>
+
+    <audio id="audio" controls loop autoplay>
+    </audio>
+
+
+    <div id="title_list">
+      <script>show_song();</script>
+    </div>
+
+  </body>
+
+
+</html>
