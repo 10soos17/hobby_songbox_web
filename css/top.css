@@ -168,6 +168,21 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   color:rgb(0, 250, 235,1);
 
 }
+#pause {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+
+}
 #next {
   font-size: 15px;
   text-align: left;
@@ -211,7 +226,70 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   background-color: rgb(0,0,0,0);
   color:rgb(0, 250, 235,1);
 }
+#vol {
+  font-size: 15px;
+  text-align: left;
 
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+
+#vol_text {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color:rgb(0, 250, 235,1);
+}
+#speed {
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
+
+#select_playlist {
+  font-size: 15px;
+  text-align: left;
+
+  width: 100px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+}
 /*===================gtts*/
 #voice {
   font-size: 15px;
