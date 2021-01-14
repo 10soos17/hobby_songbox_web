@@ -21,34 +21,50 @@
 
   <boby>
 
-    <!--===================playbtn!===================-->
-    <input id="pre" type="button" value="<<" onclick="">
-    <input id="stop" type="button" value=">" onclick="">
-    <input id="next" type="button" value=">>" onclick="">
+    <div style="width:95%;height:100%;overflow:auto;overflow-x:no;">
+      <table width="100%">
 
-    <!--===================playbar!===================-->
-    <b class="slidecontainer">
-      <span id=plus>+<b id="play_plus">00:00</b></span>
-      <input class="slider" id="play_bar" type="range" min="1" max="100" value="50">
-      <span id=minus>-<b id="play_minus">00:00</b></span>
-    </b>
+        <!--===================playbtn!===================-->
+        <input id="pre" type="button" value="<<" onclick="">
+        <input id="stop" type="button" value="=" onclick="">
+        <input id="pause" type="button" value="|||" onclick="">
+        <input id="next" type="button" value=">>" onclick="">
 
-    <!--===================title===================!-->
-    <b id="playtitle">playtitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</b>
+        <!--===================playbar===================!-->
+        <b class="slidecontainer">
+          <span id=plus>+<b id="play_plus">00:00</b></span>
+          <input class="slider" id="play_bar" type="range" min="1" max="100" value="0" step="1">
+          <span id=minus>-<b id="play_minus">00:00</b></span>
+        </b>
+        <!--===================speed===================!-->
+        <select id="speed">
+          <option value="1">speed</option>
+          <option value=".5">.5</option>
+          <option value="1">Normal</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+        </select>
+        <!--===================select title===================!-->
+        <select id="select_playlist" size="1"></select>
 
-    <!--===================random & replay!===================-->
-    <input id="random"type="button" value="#" onclick="">
-    <input id="replay" type="button" value="@" onclick="">
 
-    <!--===================volumebar===================!-->
-    <b class="slidecontainer">
-      <span id=vol>Vol: <span id="vol_text"></span></span>
-      <input class="slider" id="vol_bar" type="range" min="1" max="100" value="50">
-    </b>
-    <!--===================voice===================!-->
-    <input id="voice" type="button" value="voice" onclick="">
+        <!--===================title===================!-->
+        <b id="playtitle">playtitle</b>
 
+        <!--===================random & replay!===================-->
+        <input id="random"type="button" value="#" onclick="">
+        <input id="replay" type="button" value="@" onclick="">
 
+        <!--===================volumebar===================!-->
+        <b class="slidecontainer">
+          <input id=vol type="button" value="Vol" onclick=""><span id="vol_text">100</span>
+          <input class="slider" id="vol_bar" type="range" min="1" max="100" value="100" step="1">
+        </b>
+        <!--===================voice===================!-->
+        <input id="voice" type="button" value="voice" onclick="">
+
+      </table>
+    </div>
+    <script>window.addEventListener("load", initAudioPlayer);</script>
   </body>
-
 </html>
