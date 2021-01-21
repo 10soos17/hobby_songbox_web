@@ -1,3 +1,38 @@
+//=============================date & time======================================
+//https://www.w3schools.com/js/js_date_methods.asp
+//Date(year, month, day, hours, minutes, seconds, milliseconds)
+// ex. new Date(2018, 11, 24, 10, 33, 30, 0);
+//(날짜만)dt.toDateString();
+//(시간)dt.toISOString();// dt.toString();//dt.toUTCString();
+
+/*var dt = new Date();
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+yy = dt.getFullYear();
+mm = months[dt.getMonth()];
+dd = dt.getDate();
+
+day = days[dt.getDay()];
+
+h = dt.getHours();
+m = dt.getMinutes();
+s = dt.getSeconds();
+
+var dtText = day + ", " + mm + " " + dd + ", " + yy + " " + h + ":" + m + ":" + s
+*/
+
+function get_datetime(){
+  var dt = new Date();
+  document.getElementById("datetime").innerHTML = dt.toUTCString();//dtText;
+}
+
+//================================dropdown======================================
+//document.getElementById("myBtn").onclick = function() {myFunction()};
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
 /*window.onload = function( ) {
            // 자식 함수 호출 ( script )
           document.getElementById("i_top").contentWindow.document.getElementById("name").innerText)
@@ -11,12 +46,6 @@
  //$("#ID") $(".class")
 
 */
-
-//================================dropdown======================================
-//document.getElementById("myBtn").onclick = function() {myFunction()};
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 //================================color=========================================
 //deepbrown //wins & editbtntext color & droptext color
 var Wins = {
@@ -49,10 +78,11 @@ var Texts = {
     $(document).find("i_top").contents().find('.slider').css("background",color);
   }
 };
-//shinegreen //box & i_top button texts & slider rectangle obj & colorchaneBtn
+//shinegreen //box & datetime text & i_top button texts & slider rectangle obj & colorchaneBtn
 var Boxs = {
   set_color:function(color){
     //parent->iframe.html
+    $('#datetime').css("color",color);
     $('#changeColorBtn').css("color",color);
     //i_top->slider.css
     $(document).find("i_top").contents().find('#plus').css("color",color);
@@ -62,13 +92,19 @@ var Boxs = {
     $(document).find("i_top").contents().find('#vol').css("color",color);
     $(document).find("i_top").contents().find('#pre').css("color",color);
     $(document).find("i_top").contents().find('#stop').css("color",color);
+    $(document).find("i_top").contents().find('#pause').css("color",color);
     $(document).find("i_top").contents().find('#next').css("color",color);
     $(document).find("i_top").contents().find('#random').css("color",color);
     $(document).find("i_top").contents().find('#replay').css("color",color);
+    $(document).find("i_top").contents().find('#vol').css("color",color);
+    $(document).find("i_top").contents().find('#vol_text').css("color",color);
+    $(document).find("i_top").contents().find('#speed').css("color",color);
     $(document).find("i_top").contents().find('#voice').css("color",color);
     $(document).find("i_top").contents().find('#playtitle').css("color",color);
+    $(document).find("i_top").contents().find('#select_playlist').css("color",color);
+
     //i_center->song.html
-    $(document).find("i_center").contents().find('#checksong_playBtn').css("color",color);
+    $(document).find("i_center").contents().find('#song_add').css("color",color);
     $(document).find("i_center").contents().find('#songTitle').css("color",color);
   },
 
@@ -98,15 +134,19 @@ var Invisible = {
     //i_top->slider.css
     $(document).find("i_top").contents().find('#pre').css("background-color",color);
     $(document).find("i_top").contents().find('#stop').css("background-color",color);
+    $(document).find("i_top").contents().find('#pause').css("background-color",color);
     $(document).find("i_top").contents().find('#next').css("background-color",color);
     $(document).find("i_top").contents().find('#random').css("background-color",color);
     $(document).find("i_top").contents().find('#replay').css("background-color",color);
+    $(document).find("i_top").contents().find('#vol').css("background-color",color);
+    $(document).find("i_top").contents().find('#speed').css("background-color",color);
     $(document).find("i_top").contents().find('#voice').css("background-color",color);
+    $(document).find("i_top").contents().find('#select_playlist').css("background-color",color);
     //i_center->song.css
     $(document).find("i_center").contents().find('#title_list').css("background-color",color);
     $(document).find("i_center").contents().find('.song_list').css("background-color",color);
     //i_center->song.html
-    $(document).find("i_center").contents().find('#checksong_playBtn').css("background-color",color);
+    $(document).find("i_center").contents().find('#song_add').css("background-color",color);
   }
 };
 
@@ -129,7 +169,7 @@ var shinered = 'rgb(220, 20, 60,1)';
 
 function change_color(self){
 
-  if(self.value === '✽'){
+  if(self.value === '❆'){
     //  Wins.set_color(win);
       Wins.set_backgroundColor(pinkred);
 
@@ -139,7 +179,7 @@ function change_color(self){
       Boxs.set_color(shinegreen);
       Boxs.set_backgroundColor(shinegreen);
 
-    self.value = '❆';
+    self.value = '✽';
   }else{
     //Wins.set_color(win);
     Wins.set_backgroundColor(deepbrown);
@@ -150,7 +190,7 @@ function change_color(self){
     Boxs.set_color(shinegreen);
     Boxs.set_backgroundColor(shinegreen);
 
-    self.value = '✽';
+    self.value = '❆';
 
   }
 }
