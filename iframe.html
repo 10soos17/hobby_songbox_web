@@ -18,30 +18,305 @@
     <title>i_frame</title>
 
   </head>
-  <!--© ⧑⧒ ⧨⧩ ☀︎☼ ☽☾ ✴︎ ❊✼❉  ❄︎❆ ✻✽ ♛♕ ❥❤︎ ⟰⤊⬇︎ ◦● ≕≡ ⋯∶⋮ !-->
+
   <body>
-    
+    <!--© ⧑⧒ ⧨⧩ ☀︎☼ ☽☾ ✴︎ ❊✼❉  ❄︎❆ ✻✽ ♛♕ ❥❤︎ ⟰⤊⬇︎ ◦● ≕≡ ⋯∶⋮ !-->
+    <!--===================dropdown menu===================!-->
     <div class="dropdown" style="float:right;">
 
       <button class="dropbtn">⋯</button>
         <div class="dropdown-content" style="right:0;">
 
-          <a href="center.html" target=i_center>main</a>
-          <a href="song.html" target=i_center>song</a>
-          <a href="singer.html" target=i_center>singer</a>
-          <a href="mylist.html" target=i_center>mylist</a>
-          <a href="youtb.html" target=i_center>youtb</a>
+          <a href="/center.html" id="center" target=i_center>main</a>
+          <a href="/song.html" id="song" target=i_center>song</a>
+          <a href="/singer.html" id="singer" target=i_center>singer</a>
+          <a href="/mylist.html" id="mylist" target=i_center>mylist</a>
+          <a href="/youtb.html" id="youtb" target=i_center>youtb</a>
 
         </div>
     </div>
 
-    <input type="button" id="changeColorBtn" value="✽" onclick="change_color(this);"
+    <!--===================changeColorBtn===================!-->
+    <input type="button" id="changeColorBtn" value="❆" onclick="change_color(this);"
         style="float:right; font-size: 20px; background-color:rgb(0,0,0,0);color:rgb(0, 250, 235,1);border:0px;">
 
+    <!--===================datetime===================!-->
+    <b id="datetime"></b>
+    <script>setInterval(get_datetime,500);</script>
 
-    <iframe id="top" name="i_top" src="top.html" allowfullscreen=true frameborder="0" width="93%" height="100px" style="border:0px solid gray;"></iframe>
-    <iframe id="center" name="i_center" src="center.html" allowfullscreen=true frameborder="0" width="100%" height="800px" style="border:0px solid gray;"></iframe>
+    <script>
+      get_items();
+      let checkedlist;
+
+      window.addEventListener('message', function(e) {
+
+        //console.log('e:',e,'e.data:',e.data,'e.origin:',e.origin);
+
+        //================i_song==============
+        if (e.data[0] === "i_song" && e.data[1] === "play_songBtn"){
+          console.log("i_song_____play_songBtn");
+
+          set_audio(e.data[2]);
+
+        }
+        else if(e.data[0] === "i_song" && e.data[1] === "play_checkedsong"){
+          console.log("i_song_____play_checkedsong");
+
+          set_audio(e.data[2]);
+        }
+        else if(e.data[0] === "i_song" && e.data[1] === "get_checkedBtn"){
+          checkedlist = e.data[2];
+          console.log("checkedlist:",e.data[2]);
+        }
+        //================i_top============
+        else if(e.data[0] === "i_top" && e.data[1] === "act_stop"){
+          console.log("i_top_____act_stop");
+
+          stopbtn = $('#top').contents().find('#stop');
+          pausebtn = $('#top').contents().find('#pause');
+
+          if(stopbtn.val() === ">"){
+            _audio[0].pause();
+            stopbtn.attr('value', "=");
+            stopbtn.css('color',shinegreen);
+
+            pausebtn.attr('value',"|||");
+            pausebtn.css("color",shinegreen);
+          }
+          else{
+            console.log("checkedlist:",checkedlist);
+            set_audio(checkedlist);
+          }
+
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "act_pause"){
+          console.log("i_top_____act_pause");
+          stopbtn = $('#top').contents().find('#stop');
+          pausebtn = $('#top').contents().find('#pause');
+          play_title = $('#top').contents().find('#playtitle');
+
+          if(stopbtn.attr('value') === ">" && pausebtn.attr('value') === ">>>"){
+            _audio[0].play();
+            pausebtn.attr('value',"|||");
+            pausebtn.css('color',shinegreen);
+          }else if(stopbtn.attr('value') === ">"){
+            _audio[0].pause();
+            pausebtn.attr('value',">>>");
+            pausebtn.css('color',white);
+          }
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "act_pre"){
+          console.log("i_top_____act_pre");
+          console.log(songDir,playlist,play_index);
+          play_title = $('#top').contents().find('#playtitle');
+          pausebtn = $('#top').contents().find('#pause');
+          stopbtn = $('#top').contents().find('#stop');
+
+          check_playingPause();
+
+          if (play_index > 0){
+            play_index-=1;
+          }
+
+          play_title.html(`Track ${play_index+1} - ${playlist[play_index]}`);
+          stopbtn.attr('value',">");
+          stopbtn.css('color',white);
+
+          _audio.attr('src', `${songDir}${playlist[play_index]}`);
+          _audio[0].play();
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "act_next"){
+          console.log("i_top_____act_next");
+          console.log(songDir,playlist,play_index);
+          play_title = $('#top').contents().find('#playtitle');
+          pausebtn = $('#top').contents().find('#pause');
+          stopbtn = $('#top').contents().find('#stop');
+
+          check_playingPause();
+
+          if (play_index !== playlist.length-1){
+           play_index+=1;
+          }
+
+          play_title.html(`Track ${play_index+1} - ${playlist[play_index]}`);
+          stopbtn.attr('value',">");
+          stopbtn.css('color',white);
+
+          _audio.attr('src', `${songDir}${playlist[play_index]}`);
+          _audio[0].play();
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "act_mute"){
+          console.log("i_top_____act_mute");
+          mutebtn = $('#top').contents().find('#vol');
+          volslider = $('#top').contents().find('#vol_bar');
+          voltext = $('#top').contents().find('#vol_text');
+          //audio = $('#top').contents().find('#audio');
+
+          if(mutebtn.attr('value') === "X"){
+            _audio[0].muted = false;
+            mutebtn.attr('value',"Vol");
+            mutebtn.css('color',shinegreen);
+
+          }else{
+            _audio[0].muted = true;
+            mutebtn.attr('value',"X");
+            mutebtn.css('color',white);
+          }
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "set_volume"){
+          console.log("i_top_____set_volume");
+          volslider = $('#top').contents().find('#vol_bar');
+          voltext = $('#top').contents().find('#vol_text');
+          volvalue = volslider.val();
+          volvalue /= 100;
+          console.log("volvalue:",volvalue);
+
+          _audio[0].volume = volvalue;
+          voltext.html(`${volvalue*100}`);
+          //voltext.css("color",shinegreen);
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "set_speed"){
+          console.log("i_top_____set_speed");
+
+          speedvalue = $('#top').contents().find('#speed option:selected').val();//text();
+          _audio[0].playbackRate = speedvalue;
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "seek_pos"){
+        //  console.log("i_top_____seek_pos");
+          playslider = $('#top').contents().find('#play_bar');
+
+          let newpos = e.data[2] - playslider.offset().left;//offsetLeft;//css(left:pos);//offsetLeft;
+        //  console.log("newpos:",newpos);
+          playslider.attr('value', newpos);
+
+          let slidervalue = playslider.val();
+          let change_pos = _audio[0].duration * (slidervalue / 100);
+
+          _audio[0].currentTime = change_pos;//.toFixed(0);
+
+        //  console.log(_audio[0],_audio[0].duration,_audio[0].currentTime,"slidervalue:",slidervalue,"change_pos:",change_pos)
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "update_playTimePos"){
+          //console.log("i_top_____update_playTimePos");
+
+          playslider = $('#top').contents().find('#play_bar');
+          plustime = $('#top').contents().find('#play_plus');
+          minustime = $('#top').contents().find('#play_minus');
+          _audio = $('#top').contents().find('#audio');
+
+          let currentTime = _audio[0].currentTime;
+          let duration = _audio[0].duration;
+
+          let nowtime = currentTime * (100 / duration);
+          let remain = duration - currentTime;
+          //console.log("duration:",duration,"nowtime:",nowtime,"remain:",remain);
+
+          playslider.attr('value', `${nowtime}`)//playslider.value = nowtime;
+          //let totalmin = Math.floor(audio.duration / 60);
+          //let totalsec = Math.floor(audio.duration - totalmin * 60);
+          let nowmin = Math.floor(currentTime / 60);
+          let nowsec = Math.floor(currentTime - nowmin * 60);
+          let remainmin = Math.floor(remain / 60);
+          let remainsec = Math.floor(remain % 60);
+
+          //if(totalsec < 10){totalsec = "0" + totalsec;}
+          //if(totalmin < 10){totalmin = "0" + totalmin;}
+          if(nowsec < 10){nowsec = "0" + nowsec;}
+          if(nowmin < 10){nowmin = "0" + nowmin;}
+          if(remainmin < 10){remainmin = "0" + remainmin;}
+          if(remainsec < 10){remainsec = "0" + remainsec;}
+
+          plustime.html(`${nowmin} : ${nowsec}`);//plustime.innerHTML = nowmin + ":" + nowsec;
+          minustime.html(`${remainmin} : ${remainsec}`);//minustime.innerHTML = remainmin + ":" + remainsec;
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "change_playlist"){
+          console.log("i_top_____change_playlist");
+          play_title = $('#top').contents().find('#playtitle');
+
+          if(play_index === (playlist.length - 1)){
+            play_index = 0;
+          }else{
+            play_index+=1;
+          }
+          //split_title();
+
+          play_title.html(`Track ${play_index+1} - ${playlist[play_index]}`);
+          _audio.attr('src', `${songDir}${playlist[play_index]}`);
+          _audio[0].play();
+
+        }
+        else if(e.data[0] === "change_selectlist"){
+          console.log("i_top_____change_selectlist");
+          console.log("select_index:",e.data[1],"select_src:",e.data[2]);
+
+          for(var i=0;i < e.data.length;i++){
+            console.log(e.data[i]);
+
+          }
+
+          stopbtn = $('#top').contents().find('#stop');
+          play_title = $('#top').contents().find('#playtitle');
+
+          _audio.attr('src',`${songDir}${e.data[2]}`);// +extlist[0];
+
+          stopbtn.attr('value', ">");
+          stopbtn.css("color", white);
+
+          _audio[0].play();
+          play_index = Number(e.data[1]);
+          play_title.html(`Track ${play_index+1} - ${e.data[2]}`);
+
+        }else if(e.data[0] === "i_top" && e.data[1] === "act_shuffle"){
+          console.log("i_top_____act_shuffle");
+
+          let randomlist, randomNum, limit, count;
+          play_title = $('#top').contents().find('#playtitle');
+          stopbtn = $('#top').contents().find('#stop');
+
+          randomlist = new Array;
+          for(var i=0; i< playlist.length;i++){
+            randomlist.push('');
+          }
+
+          limit = playlist.length;
+          count = 0;
+
+          console.log("playlist:",playlist,"randomlist:",randomlist,"limit:",limit);
+
+          while (count < limit){
+            randomNum = Math.floor(Math.random() * limit);
+            if(randomlist[randomNum] !== playlist[randomNum] && randomlist[randomNum] === ''){
+              randomlist[randomNum] = playlist[count];
+              count+=1;
+            }
+          }
+          set_audio(randomlist);
+        }
+
+        //var item = document.getElementById('top');
+        //item.contentDocument.location.reload();
+        //item.playlist = e.data; //$('#top',parent.frames[0].document).playlist = e.data;
+        //var stop = $('#top').contents().find('#stop').css("color", "red");
+        //$('#stop').css("color",white);
+
+        //delete_selectlist();
+        //make_selectlist();
+        //item.getElementById("pre").value = 'aaa';
+
+        //console.log('item.playlist:',item.playlist);//,'stop:',stop);
+        //console.log('e.data:',e.data,'item:',item,'e.origin:',e.origin);
+
+      //  targetWindow = window.opener;
+      //  console.log('targetWindow:',targetWindow);
+       //document.getElementById('center').contentWindow.postMessage(item, 'http://localhost:3000/center.html');
+        //targetWindow.postMessage(item, "http://localhost:3000/center.html");
+      });
+    </script>
+    <!--===================iframe===================!-->
+    <div>
+      <iframe id="top" name="i_top" src="/top.html" scrolling="no" allowfullscreen=true frameborder="0" width="95%" height="100px" style="border:0px solid gray;"></iframe>
+      <iframe id="center" name="i_center" src="/center.html" acrolling="no" allowfullscreen=true frameborder="0" width="100%" height="800px" style="border:0px solid gray;"></iframe>
     <!--iframe src="side.html" id="side" name="i_side" allowfullscreen=true frameborder="0" width="10%" height="800px" style="border:0px solid gray;"></iframe!-->
-
+  </div>
   </body>
 </html>
