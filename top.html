@@ -12,6 +12,9 @@
     <script src="js/song.js"></script>
     <link rel="stylesheet" href="css/song.css">
 
+    <script src="./js/singer.js"></script>
+    <link rel="stylesheet" href="./css/singer.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/iframe.js"></script>
 
@@ -22,22 +25,42 @@
   <boby>
 
     <div style="width:95%;height:100%;overflow:auto;overflow-x:no;">
+      <audio id='audio'></audio>
+      <script>
+        //audio = document.getElementById("audio");
+        document.getElementById("audio").addEventListener("timeupdate", function(){update_playTimePos();});
+        document.getElementById("audio").addEventListener("ended", function(){change_playlist();});
+      </script>
       <table width="100%">
 
         <!--===================playbtn!===================-->
-        <input id="pre" type="button" value="<<" onclick="">
-        <input id="stop" type="button" value="=" onclick="">
-        <input id="pause" type="button" value="|||" onclick="">
-        <input id="next" type="button" value=">>" onclick="">
+        <input id="pre" type="button" value="<<" onclick="act_pre();">
+        <input id="stop" type="button" value="=" onclick="act_stop();">
+        <input id="pause" type="button" value="|||" onclick="act_pause();">
+        <input id="next" type="button" value=">>" onclick="act_next();">
 
         <!--===================playbar===================!-->
         <b class="slidecontainer">
           <span id=plus>+<b id="play_plus">00:00</b></span>
           <input class="slider" id="play_bar" type="range" min="1" max="100" value="0" step="1">
+          <script>
+            var playbar = document.getElementById("play_bar");
+            var audio = document.getElementById("audio");
+            playbar.onmousedown = function(event) {
+              seeking=true;
+              seek_pos(event);
+            };
+            playbar.onmousemove = function(event) {
+              seek_pos(event);
+            };
+            playbar.onmouseup = function(event) {
+              seeking=false;
+            };
+          </script>
           <span id=minus>-<b id="play_minus">00:00</b></span>
         </b>
         <!--===================speed===================!-->
-        <select id="speed">
+        <select id="speed" onchange="set_speed();">
           <option value="1">speed</option>
           <option value=".5">.5</option>
           <option value="1">Normal</option>
@@ -46,25 +69,27 @@
         </select>
         <!--===================select title===================!-->
         <select id="select_playlist" size="1"></select>
-
-
+        <script>
+          document.getElementById("select_playlist").addEventListener("change", function(){change_selectlist(event);});
+        </script>
         <!--===================title===================!-->
         <b id="playtitle">playtitle</b>
 
         <!--===================random & replay!===================-->
-        <input id="random"type="button" value="#" onclick="">
+        <input id="random"type="button" value="#" onclick="act_shuffle();">
         <input id="replay" type="button" value="@" onclick="">
 
         <!--===================volumebar===================!-->
         <b class="slidecontainer">
-          <input id=vol type="button" value="Vol" onclick=""><span id="vol_text">100</span>
-          <input class="slider" id="vol_bar" type="range" min="1" max="100" value="100" step="1">
+          <input id=vol type="button" value="Vol" onclick="act_mute();"><span id="vol_text">100</span>
+          <input class="slider" id="vol_bar" type="range" min="1" max="100" value="100" step="1" onclick ="set_volume();">
         </b>
         <!--===================voice===================!-->
-        <input id="voice" type="button" value="voice" onclick="">
+        <input id="voice" type="button" value="voice">
 
       </table>
     </div>
-    <script>window.addEventListener("load", initAudioPlayer);</script>
+    <script>//window.addEventListener("load", set_audio(['test_1.mp3']));</script>
+
   </body>
 </html>
