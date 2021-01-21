@@ -23,7 +23,8 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   -webkit-appearance: none;
   -webkit-transition: .2s;
   transition: opacity .2s;
-
+  margin: 0px;
+  padding: 0px;
   width: 200px;
   height: 3px;
 
@@ -83,9 +84,10 @@ var shinered = 'rgb(220, 20, 60,1)';*/
 #play_bar {
   width:200px;
 
+  margin:0px;
   padding:0px;
-  margin-top:10px;
-  margin-left:10px;
+  /*margin-top:10px;
+  margin-left:10px;*/
 }
 
 #minus {
