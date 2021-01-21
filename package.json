@@ -1,0 +1,21 @@
+{
+  "name": "hobby_songbox_web",
+  "version": "1.0.0",
+  "description": "playsong",
+  "main": "s.js",
+  "scripts": {
+    "start": "babel-node s.js"
+  },
+  "author": "Soo Shin",
+  "license": "ISC",
+  "homepage": "https://github.com/10soos17/hobby_songbox_web#readme",
+  "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
