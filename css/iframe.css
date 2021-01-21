@@ -1,3 +1,22 @@
+/*===================date & time */
+#datetime {
+  position: relative;
+  display: inline-block;
+  float:center;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  font-size: 12px;
+  text-align: right;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color:rgb(0, 250, 235,1);
+}
 /*var invisible = 'rgb(0,0,0,0)';
 
 var white = 'rgb(255,255,255,1)';
