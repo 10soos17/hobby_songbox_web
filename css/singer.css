@@ -1,0 +1,74 @@
+/*var invisible = 'rgb(0,0,0,0)';
+
+var white = 'rgb(255,255,255,1)';
+var black = 'rgb(0,0,0,1)';
+var lightgray = 'rgb(220,220,220,1)';
+var middlegray = 'rgb(200,200,200,1)';
+var deepgray = 'rgb(105, 105, 105,1)';
+
+var deepbrown = 'rgb(25, 11, 10,1)';
+var deepgreen = 'rgb(47,79,79,1)';
+var shinegreen = 'rgb(0, 250, 235,1)';
+
+var pastelpink = 'rgb(193,147,145,1)';//rgb(188, 143, 143,1)
+var red = 'rgb(128, 0, 0,1)';
+var pinkred = 'rgb(165,  42,  42,1)';
+var shinered = 'rgb(220, 20, 60,1)';*/
+
+.trackbar{
+  position: relative;
+  display: inline-block;
+
+  background-color: rgb(0,0,0,0);
+  color: rgb(0, 250, 235,1);
+  width:50%;
+
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+}
+.playbutton{
+  position: relative;
+  display: inline-block;
+
+  /*background-color: rgb(0,0,0,1);
+  color: rgb(0, 250, 235,1);*/
+  width:20px;
+
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+}
+.trackname{
+  position: relative;
+  display: inline-block;
+
+  background-color: rgb(0,0,0,0);
+  color: rgb(0, 250, 235,1);
+  width:50%;
+
+  font-size: 15px;
+  text-align: left;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  transition: all 0.3s;
+
+}
