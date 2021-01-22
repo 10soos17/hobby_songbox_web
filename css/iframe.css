@@ -33,10 +33,58 @@ var pastelpink = 'rgb(193,147,145,1)';//rgb(188, 143, 143,1)
 var red = 'rgb(128, 0, 0,1)';
 var pinkred = 'rgb(165,  42,  42,1)';
 var shinered = 'rgb(220, 20, 60,1)';*/
+html {
+  color: #fff;
+  background:rgb(25, 11, 10,1);/*#000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVQ4T2NUUlL6z4AH3Lt3D580A+OoAcMiDICRjDcdAKMZfzoYNYCBceiHAQDsuisx5wDZVAAAAABJRU5ErkJggg==');*/
+}
 body{
   margin:10px;
   background-color: rgb(25, 11, 10,1);
   color:white;
+}
+
+#changeColorBtn{
+  float:right;
+  font-size: 20px;
+  background-color:rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+  border:0px;
+}
+
+#colorBtn{
+
+  position: relative;
+  float:right;
+
+  text-align: center;
+  font-size: 20px;
+
+  width:25px;
+  border:0px;
+  padding: 2px;
+  margin-right: 0px;
+  margin-left: 0px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: rgb(0,0,0,0);
+  color:rgb(0, 250, 235,1);
+
+}
+.dropbtn_color{
+  border: none;
+  cursor: pointer;
+
+  background-color: rgb(0, 250, 235,1);
+  color: rgb(25, 11, 10,1);
+
+  text-align: center;
+  font-size: 15px;
+
+  width:50px;
+  padding: 5px 5px;
+  margin-right: 0px;
 }
 
 .dropbtn {
