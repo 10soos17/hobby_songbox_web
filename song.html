@@ -34,8 +34,19 @@
         <div id="title_list" style="width:95%;overflow:auto;overflow-x:no;">
 
 
-          <script>show_song();</script>
+          <script>
+          show_song();
 
+          let reload_editBtncolor, reload_editbtnTextcolor;
+          reload_textcolor = window.top.$('#top').contents().find('.slider').css("background-color");
+          reload_editBtncolor = window.top.$('#top').contents().find("#stop").css('color');
+          reload_editbtnTextcolor = window.top.$(".dropbtn").css('color');
+
+          console.log(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
+
+          reload_songCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
+
+          </script>
         </div>
 
       </table>
