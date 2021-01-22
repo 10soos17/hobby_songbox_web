@@ -9,26 +9,111 @@
     <script src="./js/top.js"></script>
     <link rel="stylesheet" href="./css/top.css" type="text\css">
 
+    <script src="./js/center.js"></script>
+
     <script src="./js/song.js"></script>
     <link rel="stylesheet" href="./css/song.css" type="text\css">
+
+    <link href="./inc/Color.Picker.Classic.css" rel="stylesheet" type="text/css" />
+    <link href="./css/sketch.css" rel="stylesheet" type="text/css" />
+
+    <script src="./js/Sketch.js" type="text/javascript"></script>
+    <script src="./inc/Event.js" type="text/javascript"></script>
+    <script src="./inc/Color.Picker.Classic.js" type="text/javascript"></script>
+    <script src="./inc/Color.Space.js" type="text/javascript"></script>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./js/iframe.js"></script>
     <link rel="stylesheet" href="./css/iframe.css" type="text\css">
 
+
     <title>center</title>
-  </head>
+    <style type="text/css">
+    /*html {
+      color: #fff;
+      background:#000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVQ4T2NUUlL6z4AH3Lt3D580A+OoAcMiDICRjDcdAKMZfzoYNYCBceiHAQDsuisx5wDZVAAAAABJRU5ErkJggg==');
+    }*/
+    	.controls {
+    		-webkit-transition-property: opacity;
+    		-webkit-transition-duration: .4s;
+    		position: absolute;
+    		top: 10px;
+    		left: 10px;
+    		z-index: 100;
+    		padding: 10px;
+    		/*border-radius: 10px;
+        box-shadow: 0 0 10px #000;
+        border: 1px solid #888;*/
+    		background: rgb(25, 11, 10,0);/*#3333;*/
+    		/*background: -webkit-gradient(linear, left top, left 250, from(#555), to(#888));*/
+    		color: rgb(0, 250, 235,0);/*#fff;*/
+    	}
+    	.controls div span {
+    		display: inline-block;
+    		width: 80px;
+    		text-align: right;
+    		padding-right: 10px;
+    	}
+    	.controls div {
+    		padding: 10px;
+    	}
+    	#areaDraw {
+    		width: 100%;
+    		min-height: 100%;
+    		z-index: 1000;
+      }
+      #center_animate{
+        border-radius: 10px;
+        background-color: rgb(0, 250, 235,1);/*#3333;*/
+    		color: rgb(25, 11, 10,1);/*#fff;*/
+      }
+      #center_clear{
+        border-radius: 10px;
+        background-color: rgb(0, 250, 235,1);/*#3333;*/
+    		color: rgb(25, 11, 10,1);/*#fff;*/
+      }
+     </style>
+    </head>
 
-  <boby>
-
-    <div style="width:95%;height:750px;overflow:auto;overflow-x:no;">
-      <table width="100%">
-        <h1>center</h1>
-      </table>
+    <body>
+      <div id="areaDraw"></div>
+      <div class="controls">
+       <!--input type="button" onclick="sketch.setTool('eraser')" style="" value="Eraser">
+       <input type="button" onclick="sketch.setTool('brush')" style="" value="Brush">
+       <p>
+      	 <div>
+      		 <span>Radius</span>
+      		 <input type="range" onchange="sketch.style.lineWidth = this.value;" value="5" min="1" max="25" title="Radius">
+      	 </div>
+      	 <div>
+      		 <span>Alpha</span>
+      		 <input type="range" onchange="sketch.style.globalAlpha = parseInt(this.value) / 100;" value="50" min="0" max="100" title="Alpha">
+      	 </div>
+      	 <div>
+      		 <span>Zoom</span>
+      		 <input type="range" onchange="sketch.zoom = this.value / 100; sketch.redrawFast();" value="100" min="50" max="200" title="Alpha">
+      	 </div>
+       </p>
+       <input type="button" onclick="sketch.redrawFast()" style="" value="Redraw"!-->
+       <input type="button" id="center_animate" onclick="sketch.redrawAnimate()" style="" value="Animate">
+       <input type="button" id="center_clear" onclick="sketch.clearRecording()" style="" value="Clear">
     </div>
+    <script type="text/javascript">
+      //==============canvas color reload
+      let reload_brushcolor, reload_btnTextcolor;
 
+      reload_brushcolor = window.top.$('#top').contents().find("#stop").css('color');
+      reload_btnTextcolor = window.top.$(".dropbtn").css('color');
 
+      console.log(reload_brushcolor,reload_btnTextcolor);
+
+      set_mainCanvas(reload_brushcolor,reload_btnTextcolor);
+
+    </script>
+
+    <!--div style="width:95%;height:750px;overflow:auto;overflow-x:no;">
+      <table width="100%">
+    </div!-->
   </body>
-
-
 </html>
