@@ -19,14 +19,14 @@ let top_id, top_sig, _audio, songDir, stopbtn, pausebtn, mutebtn, shufflebtn, pr
     speedlist, selectlist, playslider, volslider, seeking, pos, play_index, play_title,
     plustime, minustime, extlist, ext, title, type, agent, time_set;
 
+top_id = "i_top";
+songDir = "./song/";
+extlist = [".wav", ".mp3", ".ogg"];
+
 //var playlist = [//"Jerusalema_Master KG.wav",
             //"You Get What You Give (Original)_New Radicals.mp3",
             //"Centro di gravita permanente_Franco Battiato.wav",
   //          "kor_ko.wav"];
-
-top_id = "i_top";
-songDir = "./song/";
-extlist = [".wav", ".mp3", ".ogg"];
 
 //============================================================================
 function set_audio(newlist){
@@ -70,11 +70,11 @@ function act_play(){
   _audio[play_index].play();
 
   stopbtn.attr('value', ">");
-  stopbtn.css('color',white);
+  stopbtn.css('color',i_color[1]);
   play_title.html(`Track ${play_index+1} - ${playlist[0]}`);
 
   pausebtn.attr('value', "|||");
-  pausebtn.css("color",shinegreen);
+  pausebtn.css("color",i_color[2]);
 
 }
 
@@ -86,10 +86,10 @@ function check_playingPause(){
   if (pausebtn.val() === ">>>"){
     _audio[play_index].pause();
     stopbtn.attr('value',"=");
-    stopbtn.css('color',shinegreen);
+    stopbtn.css('color',i_color[2]);
 
     pausebtn.attr('value',"|||");
-    pausebtn.css('color',shinegreen);
+    pausebtn.css('color',i_color[2]);
   }
 }
 
