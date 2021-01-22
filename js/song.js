@@ -1,4 +1,17 @@
 
+function reload_songCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor){
+  $("#songTitle").css('color',reload_editBtncolor);
+
+  $(".song_list").css('color',reload_textcolor);
+
+  $(".song_edit").css('color',reload_editbtnTextcolor);
+  $(".song_edit").css('background-color',reload_editBtncolor);
+
+
+
+}
+
+
 let song_id = "i_song";
 let song_sig;
 
@@ -21,7 +34,11 @@ let songData = [
   "Endset_Trio.mp3",
   "Goldberg_Bach.mp3",
   "You_you.mp3",
-  "Nothing_nothing.mp3"
+  "Nothing_nothing.mp3",
+  "Evelyn_sakov.wav",
+  "icebaby_Vanilla.wav",
+  "UnderPressure_Queen.wav",
+  "kor_ko.wav"
 ];
 
 //========================song data form(source,title,filetyle,songbtn_id,checkbox_id,editbtn_id)
