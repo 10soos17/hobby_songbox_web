@@ -14,6 +14,7 @@ var pastelpink = 'rgb(193,147,145,1)';//rgb(188, 143, 143,1)
 var red = 'rgb(128, 0, 0,1)';
 var pinkred = 'rgb(165,  42,  42,1)';
 var shinered = 'rgb(220, 20, 60,1)';*/
+
 /*===================html slider==============================================*/
 .slidecontainer {
   width: 100%;
@@ -30,7 +31,7 @@ var shinered = 'rgb(220, 20, 60,1)';*/
 
   outline: none;
   opacity: 0.8;
-  background: rgb(255,255,255,1);
+  background-color: rgb(255,255,255,1);
 
 }
 
@@ -46,7 +47,7 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   width: 7px;
   height: 7px;
 
-  background: rgb(0, 250, 235,1);
+  background-color: rgb(0, 250, 235,1);
 }
 
 .slider::-moz-range-thumb {
@@ -54,7 +55,7 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   width: 7px;
   height: 7px;
 
-  background: rgb(0, 250, 235,1);
+  background-color: rgb(0, 250, 235,1);
 }
 /*==============================custom========================================*/
 /*===================play & volume bar*/
