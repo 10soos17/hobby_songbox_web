@@ -14,6 +14,7 @@ var pastelpink = 'rgb(193,147,145,1)';//rgb(188, 143, 143,1)
 var red = 'rgb(128, 0, 0,1)';
 var pinkred = 'rgb(165,  42,  42,1)';
 var shinered = 'rgb(220, 20, 60,1)';*/
+
 #title_list{
   position: relative;
   display: inline-block;
