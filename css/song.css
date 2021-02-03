@@ -15,11 +15,11 @@ var red = 'rgb(128, 0, 0,1)';
 var pinkred = 'rgb(165,  42,  42,1)';
 var shinered = 'rgb(220, 20, 60,1)';*/
 
-#title_list{
+#title_list{/*html에 미리 설정해둔 id 여기에 children 추가*/
   position: relative;
   display: inline-block;
 
-  background-color: rgb(0,0,0,0);
+  background-color: rgb(0, 0, 0, 0);
   width:50%;
 /*
   white-space:nowrap;
@@ -38,12 +38,12 @@ var shinered = 'rgb(220, 20, 60,1)';*/
 
 }
 
-.song_list{
+.song_list{/*children 추가할 때, css효과 주기위한 class*/
   position: relative;
   display: inline-block;
 
-  background-color: rgb(0,0,0,0);
-  color:rgb(255,255,255,1);
+  background-color: rgb(0, 0, 0, 0);
+  color:rgb(255, 255, 255);
 
   width:50%;
   white-space:nowrap;
@@ -61,12 +61,13 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   transition: all 0.3s;
 
 }
-.song_edit{
+
+.song_edit{/*children 추가할 때, css효과 주기위한 class*/
   position: relative;
   display: inline-block;
 
-  background-color: rgb(0, 250, 235,1);
-  color:rgb(25, 11, 10,1);
+  background-color: rgb(0, 250, 235);
+  color:rgb(25, 11, 10);
 
   font-size: 15px;
   text-align: left;
@@ -80,11 +81,11 @@ var shinered = 'rgb(220, 20, 60,1)';*/
 
 }
 
-#song_checkbox{
+.song_checkbox{/*children 추가할 때, css효과 주기위한 class*/
   position: relative;
   display: inline-block;
 
-  background-color: rgb(25, 11, 10,1);
+  background-color: rgb(25, 11, 10);
   opacity: 1;
 
   text-align: left;
@@ -92,4 +93,51 @@ var shinered = 'rgb(220, 20, 60,1)';*/
   margin-top:10px;
   margin-left:10px;
 
+}
+#songTitle{
+  position: relative;
+  display: inline-block;
+  float:left;
+  font-size: 30px;
+
+  width:48%;
+
+  padding:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:10px;
+
+  color:rgb(0, 250, 235);
+}
+
+#allsongBtn{
+  position: relative;
+  display: inline-block;
+  float:left;
+  font-size: 20px;
+
+  padding:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:10px;
+
+  background-color:rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
+  border:0px;
+}
+
+#addsongBtn{
+  position: relative;
+  display: inline-block;
+  float:left;
+  font-size: 20px;
+
+  padding:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:10px;
+
+  background-color:rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
+  border:0px;
 }
