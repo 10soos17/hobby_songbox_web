@@ -1,45 +1,25 @@
+//import {songData} from "/Users/soos/Desktop/git/4.web_song/hobby_songbox_web/s.js";
+let song_id = "i_song";
+let song_sig;
 
+let songDic = {};
+let songData = [];
+
+//========================reload(color)
 function reload_songCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor){
   $("#songTitle").css('color',reload_editBtncolor);
+
+  $("#addsongBtn").css('color',reload_editBtncolor);
+
+  $("#allsongBtn").css('color',reload_editBtncolor);
 
   $(".song_list").css('color',reload_textcolor);
 
   $(".song_edit").css('color',reload_editbtnTextcolor);
   $(".song_edit").css('background-color',reload_editBtncolor);
 
-
-
+  $(".song_checkbox").css('background-color',reload_editbtnTextcolor);
 }
-
-
-let song_id = "i_song";
-let song_sig;
-
-let songDic = {};
-
-//database
-let songData = [
-  "test_1.mp3",
-  "Colors_Pumas.mp3",
-  "untitle_GDRAGON.mp3",
-  "galaxy_galaxy.mp3",
-  "Centro_Battiato.wav",
-  "Jerusalema_Master.wav",
-  "Conspiracy_Valli.mp3",
-  "WhatLove_Renee.mp3",
-  "LiveDie_OST.mp3",
-  "Think_Andrew.mp3",
-  "NoYou_Clem.mp3",
-  "Mycage_Gabriel.mp3",
-  "Endset_Trio.mp3",
-  "Goldberg_Bach.mp3",
-  "You_you.mp3",
-  "Nothing_nothing.mp3",
-  "Evelyn_sakov.wav",
-  "icebaby_Vanilla.wav",
-  "UnderPressure_Queen.wav",
-  "kor_ko.wav"
-];
 
 //========================song data form(source,title,filetyle,songbtn_id,checkbox_id,editbtn_id)
 function songID(original,title,finaltype,titlebtn,checkbox,editbtn) {
@@ -51,9 +31,20 @@ function songID(original,title,finaltype,titlebtn,checkbox,editbtn) {
   this.editbtn = editbtn;
 }
 
+//========================read_songdata from iframe.html
+function show_songData(){
+  var song_db = window.top.$('#top').contents().find(".song_db").children();
+  //console.log("song_db:",song_db);
+  for(var i=0; i < song_db.length; i++){
+    songData.push(song_db[i].id);
+  }
+  console.log("songData:",songData);
+  return songData
+}
+
 //========================draw songlist & save dongData
 function show_song(){
-
+  songData = show_songData();
   for(var i = 0; i < songData.length; i++){
 
     var original = songData[i];
@@ -82,7 +73,6 @@ function show_song(){
     titlebtn.setAttribute('onclick','play_songBtn(this);');
     document.getElementById('title_list').appendChild(titlebtn);
 
-
     checkbox= document.createElement('input');
     checkbox.setAttribute("type", 'checkbox');
     checkbox.setAttribute('class','song_checkbox');
@@ -104,10 +94,10 @@ function show_song(){
     songDic[title] = S;
 
   }
-  for(key in songDic){
-    console.log(key,songDic[key]);
-  }
-  return songDic;
+//  for(key in songDic){
+//    console.log(key,songDic[key]);
+//  }
+//  return songDic;
 }
 
 //========================playsongbtn
@@ -123,14 +113,13 @@ function play_songBtn(btn){
 
 //========================recognize checked song
 function get_checkedBtn(){
-
   var checkedlist=[];
 
   for(key in songDic){
 
     if (document.getElementById(songDic[key].checkbox).checked){
       checkedlist.push(songDic[key].original);
-      console.log("checked_title: ",songDic[key].original,"key.checkbox:",songDic[key].checkbox);
+//      console.log("checked_title: ",songDic[key].original,"key.checkbox:",songDic[key].checkbox);
     }
     else{
       continue;
@@ -140,17 +129,22 @@ function get_checkedBtn(){
 
   song_sig = "get_checkedBtn";
   window.parent.postMessage([song_id,song_sig,checkedlist], 'http://localhost:3000/iframe.html');
-//  return checkedlist;
+
 }
 
-//========================add_songToMylist
+//========================play_allsong
+function play_allsong(){
+  //console.log("play_allsong_songData: ",songData);
+  song_sig = "play_allsong";
+  window.parent.postMessage([song_id,song_sig,songData], 'http://localhost:3000/iframe.html');
+}
+
+//========================add_songToMylist--->top으로 변경
 /*
 function add_songToMylist(){
   song_sig = "add_songToMylist";
   window.parent.postMessage([song_id,song_sig,checkedlist], 'http://localhost:3000/iframe.html');
 }*/
-
-
 
 
 
