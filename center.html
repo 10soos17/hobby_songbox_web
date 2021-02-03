@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script src="./js/top.js"></script>
-    <link rel="stylesheet" href="./css/top.css" type="text\css">
-
     <script src="./js/center.js"></script>
-
-    <script src="./js/song.js"></script>
-    <link rel="stylesheet" href="./css/song.css" type="text\css">
 
     <link href="./inc/Color.Picker.Classic.css" rel="stylesheet" type="text/css" />
     <link href="./css/sketch.css" rel="stylesheet" type="text/css" />
@@ -22,11 +16,7 @@
     <script src="./inc/Color.Picker.Classic.js" type="text/javascript"></script>
     <script src="./inc/Color.Space.js" type="text/javascript"></script>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./js/iframe.js"></script>
-    <link rel="stylesheet" href="./css/iframe.css" type="text\css">
-
 
     <title>center</title>
     <style type="text/css">
@@ -103,7 +93,7 @@
       //==============canvas color reload
       let reload_brushcolor, reload_btnTextcolor;
 
-      reload_brushcolor = window.top.$('#top').contents().find("#stop").css('color');
+      reload_brushcolor = window.top.$('#top').contents().find("#playtitle").css('color');
       reload_btnTextcolor = window.top.$(".dropbtn").css('color');
 
       console.log(reload_brushcolor,reload_btnTextcolor);
