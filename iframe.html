@@ -6,28 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="js/top.js"></script>
-    <link rel="stylesheet" href="css/top.css">
+    <script src="js/mylist.js"></script>
+    <script src="js/iframe.js"></script>
 
-    <script src="js/song.js"></script>
+    <link rel="stylesheet" href="css/top.css">
     <link rel="stylesheet" href="css/song.css">
+    <link rel="stylesheet" href="css/singer.css">
+    <link rel="stylesheet" href="css/mylist.css">
+    <link rel="stylesheet" href="css/iframe.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/iframe.js"></script>
-    <link rel="stylesheet" href="css/iframe.css">
+
 
     <title>i_frame</title>
 
   </head>
 
   <body>
-    <!--© ⧑⧒ ⧨⧩ ☀︎☼ ☽☾ ✴︎ ❊✼❉  ❄︎❆ ✻✽ ♛♕ ❥❤︎ ⟰⤊⬇︎ ◦● ≕≡ ⋯∶⋮ !-->
+    <!--===================datetime===================!-->
+    <b id="datetime"></b>
+
+    <script>setInterval(get_datetime,500);</script>
+
     <!--===================dropdown menu===================!-->
     <div class="dropdown" style="float:right;">
 
       <button class="dropbtn">⋯</button>
         <div class="dropdown-content" style="right:0;">
 
-          <a href="/center.html" id="center" target=i_center>main</a>
+          <a href="/center.html" id="main" target=i_center>main</a>
           <a href="/song.html" id="song" target=i_center>song</a>
           <a href="/singer.html" id="singer" target=i_center>singer</a>
           <a href="/mylist.html" id="mylist" target=i_center>mylist</a>
@@ -36,39 +43,133 @@
         </div>
     </div>
 
-    <!--===================changeColorBtn===================!-->
-    <input type="button" id="changeColorBtn" value="❆" onclick="change_color(this);"
-        style="float:right; font-size: 20px; background-color:rgb(0,0,0,0);color:rgb(0, 250, 235,1);border:0px;">
+    <!--© ⧑⧒ ⧨⧩ ☀︎☼ ☽☾ ✴︎ ❊✼❉  ❄︎❆ ✻✽ ♛♕ ❥❤︎ ⟰⤊⬇︎ ◦● ≕≡ ⋯∶⋮ !-->
+    <!--===================selectColorBtn===================!-->
+    <select id="colorBtn">
+      <option id="iceBlackBtn">❄︎</option>
+      <option id="iceRedBtn">❆</option>
+      <option id="shineDeepgreenBtn">♕</option>
+      <option id="shinegreenRedBtn">♛</option>
+      <option id="grayPinkBtn">✻</option>
+      <option id="pinkGrayBtn">✽</option>
+    </select>
 
-    <!--===================datetime===================!-->
-    <b id="datetime"></b>
-    <script>setInterval(get_datetime,500);</script>
+      <!--✖︎✗✘☒☑︎⊗⊠ ✔︎☑︎!-->
+      <!--===================popup===================!-->
+      <div class="popup">
+        <div class="popup-content">
+          <input type="button" id= makePopupBtn value="new" onclick="create_mylist();"></input><!--a href="">new</a!-->
+          <input type="button" id= editPopupBtn value="edit" onclick="edit_mylist();"></input>
+          <input type="button" id= deletePopupBtn  value="del" onclick="delete_mylist();"></input>
+          <div id="playPopup" onclick="play_mylistBtn();">✓</div>
+          <div id="addPopup" onclick="add_songToMylist();">+</div>
+          <div id="closePopup" onclick="close_popup();">+</div>
+
+          <foam action="">
+            <div id="popup_mylist">
+            </div>
+          </foam>
+          <div class="popup-create-content">
+            <label id="namePopupLabel">Name</label>
+            <input type="text" id="namePopupHolder" placeholder="Enter..." maxlength="150"></input>
+          </div>
+
+          <div class="popup-goto-content">
+            <label id="gotoLabel">Mylist</label>
+            <input type="button" id="gotoDeleteBtn" value="-" onclick="goto_deleteBtn();">
+            <input type="button" id="gotoSelectBtn" value="✓" onclick="goto_playCheckedsong();">
+            <div id="gotoClose" onclick="goto_close();">+</div>
+            <div id="gotoMylist"></div>
+          </div>
+
+        </div>
+      </div>
 
     <script>
-      get_items();
+      //============================reload popupColor===========================
+      var tColor, bColor, wColor;
+      tColor = window.top.$('#top').contents().find('.slider').css("background-color");
+      bColor = window.top.$('#top').contents().find("#playtitle").css('color');
+      wColor = window.top.$(".dropbtn").css('color');
+      //console.log(tColor, bColor, wColor);
+
+      //============================selectColorBtn event========================
+      document.getElementById("colorBtn").addEventListener("change", function(){
+        select_color(event);
+
+        var item = document.getElementById('center');//brush color떄문에 리로드
+        item.contentDocument.location.reload();});
+
+      //=============================message handle ============================
       let checkedlist;
+      get_items();
 
       window.addEventListener('message', function(e) {
 
         //console.log('e:',e,'e.data:',e.data,'e.origin:',e.origin);
 
-        //================i_song==============
-        if (e.data[0] === "i_song" && e.data[1] === "play_songBtn"){
-          console.log("i_song_____play_songBtn");
-
+        //================i_firstMylist==============
+        if(e.data[0] === "i_firstMylist" && e.data[1] === "play_mylistBtn"){
+          console.log("i_firstMylist_____play_mylistBtn");
+        //  console.log("e.data[2]:",e.data[2]);
           set_audio(e.data[2]);
-
+          document.querySelector('.popup-goto-content').style.display = 'none';
+          document.querySelector('.popup').style.display = 'none';
         }
-        else if(e.data[0] === "i_song" && e.data[1] === "play_checkedsong"){
-          console.log("i_song_____play_checkedsong");
-
+        else if(e.data[0] === "i_firstMylist" && e.data[1] === "goto_playCheckedsong"){
+          console.log("i_firstMylist_____goto_playCheckedsong","e.data[2]:",e.data[2]);
+          set_audio(e.data[2]);
+          document.querySelector('.popup-goto-content').style.display = 'none';
+          document.querySelector('.popup').style.display = 'none';
+        }
+        else if(e.data[0] === "i_firstMylist" && e.data[1] === "goto_playBtn"){
+          console.log("i_firstMylist_____goto_playBtn","e.data[2]:",e.data[2]);
+          set_audio(e.data[2]);
+          document.querySelector('.popup-goto-content').style.display = 'none';
+          document.querySelector('.popup').style.display = 'none';
+        }
+        //================i_song==============
+        else if(e.data[0] === "i_song" && e.data[1] === "play_allsong"){
+          console.log("i_song_____play_allsong");
+        //  console.log("e.data[2]:",e.data[2]);
+          set_audio(e.data[2]);
+        }
+        else if (e.data[0] === "i_song" && e.data[1] === "play_songBtn"){
+          console.log("i_song_____play_songBtn");
+          console.log("e.data[2]:",e.data[2]);
           set_audio(e.data[2]);
         }
         else if(e.data[0] === "i_song" && e.data[1] === "get_checkedBtn"){
           checkedlist = e.data[2];
-          console.log("checkedlist:",e.data[2]);
+          console.log("checkedlist from song:",e.data[2]);
+        }
+        //================i_singer==============
+        else if(e.data[0] === "i_singer" && e.data[1] === "play_allsinger"){
+          console.log("i_singer_____play_allsinger");
+          console.log("e.data[2]:",e.data[2]);
+          set_audio(e.data[2]);
+        }
+        else if (e.data[0] === "i_singer" && e.data[1] === "play_singerBtn"){
+          console.log("i_song_____play_songBtn");
+          console.log("e.data[2]:",e.data[2]);
+          set_audio(e.data[2]);
+        }
+        else if(e.data[0] === "i_singer" && e.data[1] === "get_checkedsingerBtn"){
+          console.log("i_singer_____get_checkedsingerBtn");
+          checkedlist = e.data[2];
+          console.log("checkedlist from singer:",e.data[2]);
         }
         //================i_top============
+        else if(e.data[0] === "i_top" && e.data[1] === "open_popup"){
+          console.log("i_top_____open_popup");
+        //  $('.popup').attr('display','flex');
+          document.querySelector('.popup').style.display = 'flex';
+
+          reload_popupCanvas(tColor, bColor, wColor);
+          popup_showMylist();
+          //popup list 추가하는법 & popup id iframe color 추가하기
+
+        }
         else if(e.data[0] === "i_top" && e.data[1] === "act_stop"){
           console.log("i_top_____act_stop");
 
@@ -78,16 +179,15 @@
           if(stopbtn.val() === ">"){
             _audio[0].pause();
             stopbtn.attr('value', "=");
-            stopbtn.css('color',shinegreen);
+            stopbtn.css('color',i_color[2]);
 
             pausebtn.attr('value',"|||");
-            pausebtn.css("color",shinegreen);
+            pausebtn.css("color",i_color[2]);
           }
           else{
             console.log("checkedlist:",checkedlist);
             set_audio(checkedlist);
           }
-
 
         }else if(e.data[0] === "i_top" && e.data[1] === "act_pause"){
           console.log("i_top_____act_pause");
@@ -98,11 +198,11 @@
           if(stopbtn.attr('value') === ">" && pausebtn.attr('value') === ">>>"){
             _audio[0].play();
             pausebtn.attr('value',"|||");
-            pausebtn.css('color',shinegreen);
+            pausebtn.css('color',i_color[2]);
           }else if(stopbtn.attr('value') === ">"){
             _audio[0].pause();
             pausebtn.attr('value',">>>");
-            pausebtn.css('color',white);
+            pausebtn.css('color',i_color[1]);
           }
 
         }else if(e.data[0] === "i_top" && e.data[1] === "act_pre"){
@@ -120,7 +220,7 @@
 
           play_title.html(`Track ${play_index+1} - ${playlist[play_index]}`);
           stopbtn.attr('value',">");
-          stopbtn.css('color',white);
+          stopbtn.css('color',i_color[1]);
 
           _audio.attr('src', `${songDir}${playlist[play_index]}`);
           _audio[0].play();
@@ -140,7 +240,7 @@
 
           play_title.html(`Track ${play_index+1} - ${playlist[play_index]}`);
           stopbtn.attr('value',">");
-          stopbtn.css('color',white);
+          stopbtn.css('color',i_color[1]);
 
           _audio.attr('src', `${songDir}${playlist[play_index]}`);
           _audio[0].play();
@@ -155,12 +255,12 @@
           if(mutebtn.attr('value') === "X"){
             _audio[0].muted = false;
             mutebtn.attr('value',"Vol");
-            mutebtn.css('color',shinegreen);
+            mutebtn.css('color',i_color[2]);
 
           }else{
             _audio[0].muted = true;
             mutebtn.attr('value',"X");
-            mutebtn.css('color',white);
+            mutebtn.css('color',i_color[1]);
           }
 
         }else if(e.data[0] === "i_top" && e.data[1] === "set_volume"){
@@ -173,7 +273,7 @@
 
           _audio[0].volume = volvalue;
           voltext.html(`${volvalue*100}`);
-          //voltext.css("color",shinegreen);
+          //voltext.css("color",i_color[2]);
 
         }else if(e.data[0] === "i_top" && e.data[1] === "set_speed"){
           console.log("i_top_____set_speed");
@@ -245,26 +345,24 @@
           _audio[0].play();
 
         }
-        else if(e.data[0] === "change_selectlist"){
+        else if(e.data[0] === "i_top" && e.data[1] === "change_selectlist"){
           console.log("i_top_____change_selectlist");
-          console.log("select_index:",e.data[1],"select_src:",e.data[2]);
+          console.log("select_index:",e.data[2][0],"select_src:",e.data[2][1]);
 
-          for(var i=0;i < e.data.length;i++){
-            console.log(e.data[i]);
-
-          }
 
           stopbtn = $('#top').contents().find('#stop');
           play_title = $('#top').contents().find('#playtitle');
 
-          _audio.attr('src',`${songDir}${e.data[2]}`);// +extlist[0];
+          _audio.attr('src',`${songDir}${e.data[2][1]}`);// +extlist[0];
 
           stopbtn.attr('value', ">");
-          stopbtn.css("color", white);
+          stopbtn.css("color", i_color[1]);
 
           _audio[0].play();
-          play_index = Number(e.data[1]);
-          play_title.html(`Track ${play_index+1} - ${e.data[2]}`);
+          play_index = Number(e.data[2][0]);
+          //console.log("songData[play_index]:",songData[play_index]);
+          //_audio.attr('src',`${songDir}${songData[play_index]}`);
+          play_title.html(`Track ${play_index+1} - ${e.data[2][1]}`);
 
         }else if(e.data[0] === "i_top" && e.data[1] === "act_shuffle"){
           console.log("i_top_____act_shuffle");
@@ -312,11 +410,12 @@
         //targetWindow.postMessage(item, "http://localhost:3000/center.html");
       });
     </script>
-    <!--===================iframe===================!-->
+    <!--===================iframe===========================================!-->
     <div>
-      <iframe id="top" name="i_top" src="/top.html" scrolling="no" allowfullscreen=true frameborder="0" width="95%" height="100px" style="border:0px solid gray;"></iframe>
-      <iframe id="center" name="i_center" src="/center.html" acrolling="no" allowfullscreen=true frameborder="0" width="100%" height="800px" style="border:0px solid gray;"></iframe>
-    <!--iframe src="side.html" id="side" name="i_side" allowfullscreen=true frameborder="0" width="10%" height="800px" style="border:0px solid gray;"></iframe!-->
+      <iframe id="top" name="i_top" src="/top.html" scrolling="no" allowfullscreen=true frameborder="0"
+              width="100%" height="100px" style="border:0px;"></iframe>
+      <iframe id="center" name="i_center" src="/center.html" scrolling="no" allowfullscreen=true frameborder="0"
+              width="100%" height="700px" style="border:0px;"></iframe>
   </div>
   </body>
 </html>
