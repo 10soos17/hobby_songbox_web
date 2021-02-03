@@ -9,14 +9,7 @@
     <script src="js/top.js"></script>
     <link rel="stylesheet" href="css/top.css">
 
-    <script src="js/song.js"></script>
-    <link rel="stylesheet" href="css/song.css">
-
-    <script src="./js/singer.js"></script>
-    <link rel="stylesheet" href="./css/singer.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/iframe.js"></script>
 
     <title>song_top</title>
 
@@ -24,10 +17,9 @@
 
   <boby>
 
-    <div style="width:95%;height:100%;overflow:auto;overflow-x:no;">
+    <div style="width:100%;height:100%;overflow:auto;overflow-x:hidden;overflow-y:hidden;">
       <audio id='audio'></audio>
       <script>
-        //audio = document.getElementById("audio");
         document.getElementById("audio").addEventListener("timeupdate", function(){update_playTimePos();});
         document.getElementById("audio").addEventListener("ended", function(){change_playlist();});
       </script>
@@ -43,6 +35,7 @@
         <b class="slidecontainer">
           <span id=plus>+<b id="play_plus">00:00</b></span>
           <input class="slider" id="play_bar" type="range" min="1" max="100" value="0" step="1">
+
           <script>
             var playbar = document.getElementById("play_bar");
             var audio = document.getElementById("audio");
@@ -57,8 +50,10 @@
               seeking=false;
             };
           </script>
+
           <span id=minus>-<b id="play_minus">00:00</b></span>
         </b>
+
         <!--===================speed===================!-->
         <select id="speed" onchange="set_speed();">
           <option value="1">speed</option>
@@ -67,15 +62,15 @@
           <option value="1.5">1.5</option>
           <option value="2">2</option>
         </select>
+
         <!--===================select title===================!-->
         <select id="select_playlist" size="1"></select>
-        <script>
-          document.getElementById("select_playlist").addEventListener("change", function(){
-            change_selectlist(event);
-          });
-        </script>
+
         <!--===================title===================!-->
         <b id="playtitle">playtitle</b>
+
+        <!--===================mylist popup(play/add/create/delete)!===================-->
+        <input id="topTomylist"type="button" value="+/-" onclick="open_popup();">
 
         <!--===================random & replay!===================-->
         <input id="random"type="button" value="#" onclick="act_shuffle();">
@@ -86,11 +81,18 @@
           <input id=vol type="button" value="Vol" onclick="act_mute();"><span id="vol_text">100</span>
           <input class="slider" id="vol_bar" type="range" min="1" max="100" value="100" step="1" onclick ="set_volume();">
         </b>
+
         <!--===================voice===================!-->
         <input id="voice" type="button" value="voice">
 
       </table>
     </div>
+
+    <script>
+      document.getElementById("select_playlist").addEventListener("change", function(){
+        change_selectlist(event);
+      });
+    </script>
 
   </body>
 </html>
