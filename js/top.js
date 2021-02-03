@@ -1,3 +1,11 @@
+let top_id, top_sig, _audio, songDir, stopbtn, pausebtn, mutebtn, shufflebtn, prebtn, nextbtn,
+    speedlist, selectlist, playslider, volslider, seeking, pos, play_index, play_title,
+    plustime, minustime, extlist, ext, title, type, agent, time_set;
+
+top_id = "i_top";
+songDir = "./song/";
+extlist = [".wav", ".mp3", ".ogg"];
+
 var invisible = 'rgb(0,0,0,0)';
 
 var white = 'rgb(255,255,255,1)';
@@ -15,19 +23,6 @@ var red = 'rgb(128, 0, 0,1)';
 var pinkred = 'rgb(165,  42,  42,1)';
 var shinered = 'rgb(220, 20, 60,1)';
 
-let top_id, top_sig, _audio, songDir, stopbtn, pausebtn, mutebtn, shufflebtn, prebtn, nextbtn,
-    speedlist, selectlist, playslider, volslider, seeking, pos, play_index, play_title,
-    plustime, minustime, extlist, ext, title, type, agent, time_set;
-
-top_id = "i_top";
-songDir = "./song/";
-extlist = [".wav", ".mp3", ".ogg"];
-
-//var playlist = [//"Jerusalema_Master KG.wav",
-            //"You Get What You Give (Original)_New Radicals.mp3",
-            //"Centro di gravita permanente_Franco Battiato.wav",
-  //          "kor_ko.wav"];
-
 //============================================================================
 function set_audio(newlist){
 
@@ -39,9 +34,9 @@ function set_audio(newlist){
   console.log("playlist:",playlist);
 
   _audio = $('#top').contents().find('#audio');//audio = new Audio();//  audio.append(`<audio id='audio'></audio>`);
-
   _audio.attr('src',`${songDir}${playlist[play_index]}`);//audio.src = songDir + playlist[play_index];
   _audio.attr('load',`${songDir}${playlist[play_index]}`);
+
 
   if(playlist.length === 1){
     _audio.attr('loop',true);
@@ -113,9 +108,12 @@ function make_selectlist(){
 
     var title = playlist[i].split(".");
     title = title[0];
-    console.log('playlist[i]:',playlist[i])
+    console.log('playlist[i]:',playlist[i]);
 
-    selectlist.append(`<option value = ${i} value2=${playlist[i]} id=${playlist[i]}>${title}</option>`);
+    //selectlist.append(`<option value = ${i} id=${playlist[i]}>${title}</option>`);
+    selectlist.append(`<option value ="${i}" id="${playlist[i]}">${title}</option>`);
+    //id = $('#top').contents().find(`#${playlist[i]}`).attr('id');
+    //console.log("selectlist_________ID:",id);
   }
 }
 
@@ -259,18 +257,23 @@ function change_playlist(){
 }
 
 //========================play selectlist & act btn & change playtitle
-//리스트로 넘길 수 있는 postMessage의 data maxim이 3개 -> id 제외하고 넘김
-//추후 수정하기 -> id 포함해서 넘기는 방식으로
 function change_selectlist(event){
-  top_sig = "change_selectlist";
+  let thislist = $("#select_playlist");
   let select_index = $("#select_playlist option:selected").attr('value');
   let select_src = $("#select_playlist option:selected").attr('id');
 
-  console.log(select_index,select_src);
-  window.parent.postMessage([top_sig,select_index,select_src], 'http://localhost:3000/iframe.html');
+  top_sig = "change_selectlist";
+  //console.log(event,select_index,select_src);
+  window.parent.postMessage([top_id,top_sig,[select_index,select_src]], 'http://localhost:3000/iframe.html');
 }
 //========================act shuffle //error
 function act_shuffle() {
   top_sig = "act_shuffle";
+  window.parent.postMessage([top_id,top_sig], 'http://localhost:3000/iframe.html');
+}
+
+//========================add_mylist
+function open_popup(){
+  top_sig = "open_popup";
   window.parent.postMessage([top_id,top_sig], 'http://localhost:3000/iframe.html');
 }
