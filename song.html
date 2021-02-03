@@ -6,55 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script src="js/top.js"></script>
-    <link rel="stylesheet" href="css/top.css">
-
     <script src="js/song.js"></script>
     <link rel="stylesheet" href="css/song.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/iframe.js"></script>
-
 
     <title>song_center</title>
   </head>
 
   <boby>
 
-    <div style="width:100%;height:750px;overflow:auto;overflow-x:no;">
+    <div style="width:100%;height:700px;overflow:auto;overflow-x:no;">
       <table width="100%">
 
-        <h1 id="songTitle" style="color:rgb(0, 250, 235,1);">song list</h1>
+        <h1 id="songTitle">song list</h1>
+        <!--✔︎☑︎!-->
+        <input type="button" id="allsongBtn" value="✓" onclick="play_allsong();">
+        <input type="button" id="addsongBtn" value="+/-" onclick="add_songToMylist();">
 
-        <!--input type="button" id="song_add" value="+/-" onclick="add_songToMylist();"
-            style="float:right; font-size: 20px; background-color:rgb(0,0,0,0);color:rgb(0, 250, 235,1);border:0px;"!-->
-
-        <!--audio id="audio" controls loop autoplay></audio!-->
-
-        <div id="title_list" style="width:95%;overflow:auto;overflow-x:no;">
-
-
-          <script>
-          show_song();
-
-          let reload_editBtncolor, reload_editbtnTextcolor;
-          reload_textcolor = window.top.$('#top').contents().find('.slider').css("background-color");
-          reload_editBtncolor = window.top.$('#top').contents().find("#stop").css('color');
-          reload_editbtnTextcolor = window.top.$(".dropbtn").css('color');
-
-          console.log(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
-
-          reload_songCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
-
-          </script>
-        </div>
-
+        <div id="title_list" style="width:95%;overflow:auto;overflow-x:no;"></div>
       </table>
     </div>
+
     <script>
+      let reload_textcolor, reload_editBtncolor, reload_editbtnTextcolor;
+      reload_textcolor = window.top.$('#top').contents().find('.slider').css("background-color");
+      reload_editBtncolor = window.top.$('#top').contents().find("#playtitle").css('color');
+      reload_editbtnTextcolor = window.top.$(".dropbtn").css('color');
+      //console.log(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
 
+      show_song();
+      reload_songCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
     </script>
+
   </body>
-
-
 </html>
