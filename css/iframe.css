@@ -1,22 +1,3 @@
-/*===================date & time */
-#datetime {
-  position: relative;
-  display: inline-block;
-  float:center;
-
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow: ellipsis;
-
-  font-size: 12px;
-  text-align: right;
-
-  padding:0px;
-  margin-top:10px;
-  margin-left:10px;
-
-  color:rgb(0, 250, 235,1);
-}
 /*var invisible = 'rgb(0,0,0,0)';
 
 var white = 'rgb(255,255,255,1)';
@@ -35,19 +16,38 @@ var pinkred = 'rgb(165,  42,  42,1)';
 var shinered = 'rgb(220, 20, 60,1)';*/
 html {
   color: #fff;
-  background:rgb(25, 11, 10,1);/*#000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVQ4T2NUUlL6z4AH3Lt3D580A+OoAcMiDICRjDcdAKMZfzoYNYCBceiHAQDsuisx5wDZVAAAAABJRU5ErkJggg==');*/
+  background:rgb(25, 11, 10);/*#000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVQ4T2NUUlL6z4AH3Lt3D580A+OoAcMiDICRjDcdAKMZfzoYNYCBceiHAQDsuisx5wDZVAAAAABJRU5ErkJggg==');*/
 }
 body{
   margin:10px;
-  background-color: rgb(25, 11, 10,1);
+  background-color: rgb(25, 11, 10);
   color:white;
 }
+/*===================date & time==============================================*/
+#datetime {
+  position: relative;
+  display: inline-block;
+  float:center;
 
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  font-size: 12px;
+  text-align: right;
+
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+
+  color:rgb(0, 250, 235);
+}
+/*===================dropbtn==================================================*/
 #changeColorBtn{
   float:right;
   font-size: 20px;
-  background-color:rgb(0,0,0,0);
-  color:rgb(0, 250, 235,1);
+  background-color:rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
   border:0px;
 }
 
@@ -68,16 +68,16 @@ body{
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: rgb(0,0,0,0);
-  color:rgb(0, 250, 235,1);
+  background-color: rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
 
 }
 .dropbtn_color{
   border: none;
   cursor: pointer;
 
-  background-color: rgb(0, 250, 235,1);
-  color: rgb(25, 11, 10,1);
+  background-color: rgb(0, 250, 235);
+  color: rgb(25, 11, 10, 1);
 
   text-align: center;
   font-size: 15px;
@@ -91,8 +91,8 @@ body{
   border: none;
   cursor: pointer;
 
-  background-color: rgb(0, 250, 235,1);
-  color: rgb(25, 11, 10,1);
+  background-color: rgb(0, 250, 235);
+  color: rgb(25, 11, 10);
 
   text-align: center;
   font-size: 15px;
@@ -106,7 +106,7 @@ body{
   position: relative;
   display: inline-block;
 
-  background-color: rgb(0, 250, 235,1);
+  background-color: rgb(0, 250, 235);
   /*padding: 2px;*/
 }
 
@@ -114,7 +114,7 @@ body{
   display: none;
   position: absolute;
   /*right: 0;*/
-  background-color: rgb(0, 250, 235,1);
+  background-color: rgb(0, 250, 235);
 
   text-align: center;
   font-size: 15px;
@@ -124,7 +124,7 @@ body{
   margin-right: 0px;
   min-width: 50px;
 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -132,16 +132,328 @@ body{
   text-decoration: none;
   display: block;
 
-  color:rgb(25, 11, 10,1);
+  color:rgb(25, 11, 10);
   padding: 5px 5px;
 }
 
-.dropdown-content a:hover {background-color: rgb(255,255,255,1);}
+.dropdown-content a:hover {background-color: rgb(255, 255, 255);}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: rgb(255,255,255,1);
+  background-color: rgb(255, 255, 255);
+}
+/*===================popup====================================================*/
+.popup{/*최상위 popup - 전체 윈도우 흐리게 효과*/
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  width: 99.9%;
+  height: 99.9%;
+  top: 0;
+  overflow:hidden;
+  background-color: rgb(25, 11, 10);
+  opacity: 0.7;
+}
+.popup-content{/*popup 창 안의 실제 내용 적힐 부분*/
+  white-space:nowrap;
+
+  /*text-overflow: ellipsis;
+  overflow:auto;
+  overflow-x: hidden;
+*/
+  position: relative;
+  width: 20%;
+  height: 30%;
+  border-radius: 4px;
+  border:1px solid;
+
+  text-align: center;
+  padding:0px;
+
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(25, 11, 10);
+}
+
+/*================popup content*/
+#popup_mylist{/*html에 미리 설정해둔 id 여기에 children 추가*/
+  position: relative;
+  width: 100%;
+  height: 85%;
+  margin-top:30px;
+
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  overflow:auto;
+}
+
+.popup_mylist_list{/*children 추가할 때, css효과 주기위한 class*/
+  width: 50%;
+  padding:0px;
+  margin-top:10px;
+  margin-left:10px;
+  margin-right:30px;
+  border:0px;
+
+  font-size: 15px;
+  text-align: left;
+
+  background-color: rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
+}
+
+.popup_mylist_checkbox{/*children 추가할 때, css효과 주기위한 class*/
+  position: relative;
+  display: inline-block;
+  margin-top:0px;
+  margin-left:0px;
+
+  text-align: left;
+
+  background-color: rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
+
+}
+#closePopup{
+  position: absolute;
+  top: 0;
+  right: 2%;
+  transform: rotate(45deg);
+  cursor: pointer;
+
+  font-size: 20px;
+  color: rgb(0, 250, 235);
+}
+#addPopup{
+  position: absolute;
+  top: 0;
+  right: 25%;
+  cursor: pointer;
+
+  font-size: 20px;
+  color: rgb(0, 250, 235);
+}
+#playPopup{
+  position: absolute;
+  top: 0;
+  right: 12%;
+  cursor: pointer;
+
+  font-size: 20px;
+  color: rgb(0, 250, 235);
+}
+#makePopupBtn{
+  position: absolute;
+  top:0;
+  right: 83%;
+  margin: 5px auto;
+  padding:2px;
+  font-size: 15px;
+
+  border-radius: 4px;
+  border:1px solid;
+  color: rgb(0, 250, 235);
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(25, 11, 10);
+}
+#editPopupBtn{
+  position: absolute;
+  top:0;
+  right: 68%;
+  margin: 5px auto;
+  padding:2px;
+  font-size: 15px;
+
+  border-radius: 4px;
+  border:1px solid;
+  color: rgb(0, 250, 235);
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(25, 11, 10);
+}
+#deletePopupBtn{
+  position: absolute;
+  top:0;
+  right: 54.5%;
+  margin: 5px auto;
+  padding:2px;
+  font-size: 15px;
+
+  border-radius: 4px;
+  border:1px solid;
+  color: rgb(0, 250, 235);
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(25, 11, 10);
+}
+/*.popup-create-content   border-color:rgb(0, 250, 235); background-color: rgb(0, 0, 0);
+#namePopupLabel   color: rgb(0, 250, 235);
+#namePopupHolder  color: rgb(255, 255, 255); border-color:rgb(0, 250, 235); background-color: rgb(255, 255, 255, 0.2);*/
+/*================popup create-content*/
+.popup-create-content{/*popup 창 안에서 create, edit 클릭 시, 창 안에 뜨는 내용*/
+  position:relative;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  display:none;
+
+/*  bottom: -6.5%;
+  top: -113%;*/
+  height: 40px;
+
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border:1px solid;
+
+  text-align: center;
+  padding:0px;
+
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(25, 11, 10);
+}
+#namePopupLabel{
+  position: absolute;
+  right: 77%;
+  margin: 5px auto;
+  padding:2px;
+  font-size: 15px;
+  color: rgb(0, 250, 235);
+}
+#namePopupHolder{
+  position: absolute;
+  right: 2%;
+  margin: 5px auto;
+  padding:2px;
+  font-size: 15px;
+
+  border-radius: 0px;
+  border:1px solid;
+
+  color: rgb(255, 255, 255);
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(255, 255, 255, 0.2);/*--->color change에서 제외하기*/
+}
+/*.popup-goto-content  border-color:rgb(0, 250, 235);background-color: rgb(0, 0, 0);
+#gotoLabel  color:rgb(0, 250, 235);
+#gotoDeleteBtn  background-color:rgb(0, 0, 0, 0);color:rgb(0, 250, 235);
+#gotoSelectBtn background-color:rgb(0, 0, 0, 0);color:rgb(0, 250, 235);
+#gotoClose  color: rgb(0, 250, 235);
+#gotoMylist background-color: rgb(0, 0, 0, 0);
+.gotoMyname background-color: rgb(0, 0, 0, 0); color:rgb(255, 255, 255);
+.goto_checkbox background-color: rgb(25, 11, 10);*/
+
+/*================popup goto-content */
+.popup-goto-content{/*popup 창 안에서 mylist button 클릭 시, 창 옆에 뜨는 내용*/
+  position:relative;
+  display: flex;
+  display:none;
+
+  height: 200px;
+
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  overflow:auto;
+  overflow-x: hidden;
+
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border:1px solid;
+
+  text-align: center;
+  padding:0px;
+
+  border-color:rgb(0, 250, 235);
+  background-color: rgb(25, 11, 10);
+}
+#gotoLabel{
+  position: absolute;
+  top:0;
+  right: 75%;
+  margin: 5px auto;
+  padding:2px;
+  font-size: 15px;
+
+  color:rgb(0, 250, 235);
+}
+#gotoDeleteBtn{
+  position: absolute;
+  top:0;
+  right: 23%;
+  padding:2px;
+  border:0px;
+
+  font-size: 20px;
+
+  background-color:rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
+}
+#gotoSelectBtn{
+  position: absolute;
+  top:0;
+  right: 10%;
+  padding:2px;
+  border:0px;
+
+  font-size: 20px;
+
+  background-color:rgb(0, 0, 0, 0);
+  color:rgb(0, 250, 235);
+}
+#gotoClose{
+  position: absolute;
+  top: 0;
+  right: 2%;
+  transform: rotate(45deg);
+  cursor: pointer;
+
+  font-size: 20px;
+
+  color: rgb(0, 250, 235);
+}
+
+#gotoMylist{/*html에 미리 설정해둔 id 여기에 children 추가*/
+  position: absolute;
+  display: inline-block;
+  width:100%;
+  top:20px;
+
+  background-color: rgb(0, 0, 0, 0);
+}
+
+.gotoMyname{/*children 추가할 때, css효과 주기위한 class*/
+  position: absolute;
+  display: inline-block;
+  width:75%;
+  right:18%;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-left:10px;
+  border:0px solid green;
+
+  text-align: center;
+  font-size: 15px;
+
+  background-color: rgb(0, 0, 0, 0);
+  color:rgb(255, 255, 255);
+}
+
+.goto_checkbox{/*children 추가할 때, css효과 주기위한 class*/
+  position: absolute;
+  display: inline-block;
+  right:10%;
+  text-align: right;
+
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-left:10px;
+
+  background-color: rgb(25, 11, 10);
 }
