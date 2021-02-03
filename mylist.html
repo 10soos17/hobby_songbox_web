@@ -3,22 +3,59 @@
 
   <head>
     <mata charset="UTF-8">
-    <title>mylist</title>
 
-    <script src="js/top.js"></script>
+    <!--script src="js/top.js"></script>
     <link rel="stylesheet" href="css/top.css">
 
     <script src="js/song.js"></script>
     <link rel="stylesheet" href="css/song.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/singer.js"></script>
+    <link rel="stylesheet" href="css/singer.css">
+    <script src="js/iframe.js"></script!-->
+
+    <script src="js/top.js"></script>
     <script src="js/iframe.js"></script>
-    
+    <script src="js/mylist.js"></script>
+    <link rel="stylesheet" href="css/mylist.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>mylist</title>
+
   </head>
 
   <body>
+    <div style="width:100%;height:700px;overflow:auto;overflow-x:hidden;">
+      <table width="100%">
 
-    <h1>mylist</h1>
+        <h1 id="mylistTitle">Mylist</h1>
+        <!--✔︎☑︎!-->
+        <input type="button" id="selectMylistBtn" value="✓" onclick="play_firstMylistBtn();">
+        <input type="button" id="deleteMylistBtn" value="-" onclick="delete_mysong();">
+
+        <div id="myname_list" style="width:95%;overflow:auto;overflow-x:hidden;"></div>
+      </table>
+    </div>
+
+    <!--script>
+      let reload_textcolor, reload_editBtncolor, reload_editbtnTextcolor;
+
+      reload_textcolor = window.top.$('#top').contents().find('.slider').css("background-color");
+      reload_editBtncolor = window.top.$('#top').contents().find("#playtitle").css('color');
+      reload_editbtnTextcolor = window.top.$(".dropbtn").css('color');
+
+      show_mylist();
+      reload_mynameCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
+
+      window.addEventListener('message', function(e) {
+        console.log('center_mylist:',e);
+        show_myname(e.data[2]);
+        reload_mynameCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
+      });
+
+    </script!-->
+
 
   </body>
 
