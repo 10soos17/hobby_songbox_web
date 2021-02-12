@@ -1,4 +1,4 @@
-//import {songData} from "/Users/soos/Desktop/git/4.web_song/hobby_songbox_web/s.js";
+
 let song_id = "i_song";
 let song_sig;
 
@@ -6,19 +6,17 @@ let songDic = {};
 let songData = [];
 
 //========================reload(color)
-function reload_songCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor){
-  $("#songTitle").css('color',reload_editBtncolor);
+function reload_songCanvas(tColor, bColor, wColor){
+  $("#songTitle").css('color',bColor);
 
-  $("#addsongBtn").css('color',reload_editBtncolor);
+  $("#allsongBtn").css('color',bColor);
 
-  $("#allsongBtn").css('color',reload_editBtncolor);
+  $(".song_list").css('color',tColor);
 
-  $(".song_list").css('color',reload_textcolor);
+  $(".song_edit").css('color',wColor);
+  $(".song_edit").css('background-color',bColor);
 
-  $(".song_edit").css('color',reload_editbtnTextcolor);
-  $(".song_edit").css('background-color',reload_editBtncolor);
-
-  $(".song_checkbox").css('background-color',reload_editbtnTextcolor);
+  $(".song_checkbox").css('background-color',wColor);
 }
 
 //========================song data form(source,title,filetyle,songbtn_id,checkbox_id,editbtn_id)
@@ -139,14 +137,6 @@ function play_allsong(){
   window.parent.postMessage([song_id,song_sig,songData], 'http://localhost:3000/iframe.html');
 }
 
-//========================add_songToMylist--->top으로 변경
-/*
-function add_songToMylist(){
-  song_sig = "add_songToMylist";
-  window.parent.postMessage([song_id,song_sig,checkedlist], 'http://localhost:3000/iframe.html');
-}*/
-
-
 
 //==============================================================================
 //==============================================================================
@@ -179,41 +169,4 @@ document.write(P1.introduce() + "<br />");
 var P2 = new Person('exam2');
 document.write(P2.introduce() + "<br />");
 
-*/
-//==============================================================================
-/*
-function play_songBtn(btn){
-
-  //filetype = songDic[btn.value].finaltype;
-  original = songDic[btn.value].original;
-  //console.log(btn.value,finaltype,original);
-
-  playsong  = document.createElement('source');
-  playsong.setAttribute("src", "./song/" + original);
-  //playsong = document.createElement(type="audio/"+filetype);
-
-  //lastchild = document.getElementById('audio').lastElementChild;
-  //console.log('lastchild',lastchild,"num",num);
-  num = (document.getElementById('audio').children).length;
-
-
-  if (num !== 0){
-
-  //  document.getElementById('audio').replaceChild(playsong,title_list.lastchild);
-    document.getElementById('audio').removeChild(audio.children[0]);
-  //  document.getElementById('audio').pause();
-    document.getElementById('audio').load(playsong);
-    document.getElementById('audio').play();
-
-  }else{
-
-    document.getElementById('audio').appendChild(playsong);
-  //  document.getElementById('audio').pause();
-    document.getElementById('audio').load(playsong);
-    document.getElementById('audio').play();
-
-  }
-
-  console.log('this_:',btn.value,'num:',num);
-}
 */
