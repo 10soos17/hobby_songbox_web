@@ -295,7 +295,6 @@ body{
 /*================popup create-content*/
 .popup-create-content{/*popup 창 안에서 create, edit 클릭 시, 창 안에 뜨는 내용*/
   position:relative;
-  display: flex;
   justify-content: center;
   align-items:center;
   display:none;
