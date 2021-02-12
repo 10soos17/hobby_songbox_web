@@ -1,3 +1,4 @@
+
 let singer_id = "i_singer";
 let singer_sig;
 
@@ -6,19 +7,17 @@ let singerSongDic = {};
 let singerData = [];
 
 //========================reload(color)
-function reload_singerCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor){
-  $("#singerTitle").css('color',reload_editBtncolor);
+function reload_singerCanvas(tColor, bColor, wColor){
+  $("#singerTitle").css('color',bColor);
 
-  $("#addsingerBtn").css('color',reload_editBtncolor);
+  $("#allsingerBtn").css('color',bColor);
 
-  $("#allsingerBtn").css('color',reload_editBtncolor);
+  $(".singer_list").css('color',tColor);
 
-  $(".singer_list").css('color',reload_textcolor);
+  $(".singer_edit").css('color',wColor);
+  $(".singer_edit").css('background-color',bColor);
 
-  $(".singer_edit").css('color',reload_editbtnTextcolor);
-  $(".singer_edit").css('background-color',reload_editBtncolor);
-
-  $(".singer_checkbox").css('background-color',reload_editbtnTextcolor);
+  $(".singer_checkbox").css('background-color',wColor);
 }
 
 //========================singer data form(singer,songs,singerbtn_id,checkbox_id,editbtn_id)
@@ -143,10 +142,3 @@ function play_allsinger(){
   singer_sig = "play_allsinger";
   window.parent.postMessage([singer_id,singer_sig,songData], 'http://localhost:3000/iframe.html');
 }
-
-//========================add_singerToMylist--->top으로 변경
-/*
-function add_singerToMylist(){
-  singer_sig = "add_singerToMylist";
-  window.parent.postMessage([singer_id,singer_sig,checkedlist], 'http://localhost:3000/iframe.html');
-}*/
