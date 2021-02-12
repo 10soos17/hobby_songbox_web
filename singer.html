@@ -23,21 +23,20 @@
         <h1 id="singerTitle">singer list</h1>
         <!--✔︎☑︎!-->
         <input type="button" id="allsingerBtn" value="✓" onclick="play_allsong();">
-        <input type="button" id="addsingerBtn" value="+/-" onclick="add_singerToMylist();">
 
         <div id="name_list" style="width:95%;overflow:auto;overflow-x:no;"></div>
       </table>
     </div>
 
     <script>
-      let reload_textcolor, reload_editBtncolor, reload_editbtnTextcolor;
-      reload_textcolor = window.top.$('#top').contents().find('.slider').css("background-color");
-      reload_editBtncolor = window.top.$('#top').contents().find("#playtitle").css('color');
-      reload_editbtnTextcolor = window.top.$(".dropbtn").css('color');
+      let tColor, bColor, wColor;
+      tColor = window.top.$('#top').contents().find('.slider').css("background-color");
+      bColor = window.top.$('#top').contents().find("#playtitle").css('color');
+      wColor = window.top.$(".dropbtn").css('color');
       //console.log(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
 
       show_singer();
-      reload_singerCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
+      reload_singerCanvas(tColor, bColor, wColor);
     </script>
 
   </body>
