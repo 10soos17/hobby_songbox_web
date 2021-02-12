@@ -6,23 +6,6 @@ top_id = "i_top";
 songDir = "./song/";
 extlist = [".wav", ".mp3", ".ogg"];
 
-var invisible = 'rgb(0,0,0,0)';
-
-var white = 'rgb(255,255,255,1)';
-var black = 'rgb(0,0,0,1)';
-var lightgray = 'rgb(220,220,220,1)';
-var middlegray = 'rgb(200,200,200,1)';
-var deepgray = 'rgb(105, 105, 105,1)';
-
-var deepbrown = 'rgb(25, 11, 10,1)';
-var deepgreen = 'rgb(47,79,79,1)';
-var shinegreen = 'rgb(0, 250, 235,1)';
-
-var pastelpink = 'rgb(193,147,145,1)';//rgb(188, 143, 143,1)
-var red = 'rgb(128, 0, 0,1)';
-var pinkred = 'rgb(165,  42,  42,1)';
-var shinered = 'rgb(220, 20, 60,1)';
-
 //============================================================================
 function set_audio(newlist){
 
@@ -272,7 +255,7 @@ function act_shuffle() {
   window.parent.postMessage([top_id,top_sig], 'http://localhost:3000/iframe.html');
 }
 
-//========================add_mylist
+//========================manage_mylist
 function open_popup(){
   top_sig = "open_popup";
   window.parent.postMessage([top_id,top_sig], 'http://localhost:3000/iframe.html');
