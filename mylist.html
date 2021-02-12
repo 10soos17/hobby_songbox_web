@@ -4,16 +4,6 @@
   <head>
     <mata charset="UTF-8">
 
-    <!--script src="js/top.js"></script>
-    <link rel="stylesheet" href="css/top.css">
-
-    <script src="js/song.js"></script>
-    <link rel="stylesheet" href="css/song.css">
-
-    <script src="js/singer.js"></script>
-    <link rel="stylesheet" href="css/singer.css">
-    <script src="js/iframe.js"></script!-->
-
     <script src="js/top.js"></script>
     <script src="js/iframe.js"></script>
     <script src="js/mylist.js"></script>
@@ -29,32 +19,34 @@
     <div style="width:100%;height:700px;overflow:auto;overflow-x:hidden;">
       <table width="100%">
 
-        <h1 id="mylistTitle">Mylist</h1>
+        <input type="button" id="mylistTitle" value="Mylist"></input>
         <!--✔︎☑︎!-->
-        <input type="button" id="selectMylistBtn" value="✓" onclick="play_firstMylistBtn();">
-        <input type="button" id="deleteMylistBtn" value="-" onclick="delete_mysong();">
+        <div class="create-content">
+          <label for="nameHolder" id="nameLabel">Name</label>
+          <input type="text" id="nameHolder" name="holder" placeholder="Enter..." maxlength="150"></input>
+        </div>
+        <input type="submit" id= mylist_pageBtn value="<" onclick="go_mylistpage();"></input>
+        <input type="submit" id= makeBtn value="new" onclick="create_mylistpage();"></input>
+        <input type="submit" id= editBtn value="edit" onclick="edit_mylistpage();"></input>
+        <input type="submit" id= deleteBtn value="del" onclick="delete_mylistpage();"></input>
+        <input type="submit" id= playBtn value="play" onclick="play_mylistpage();"></input>
 
-        <div id="myname_list" style="width:95%;overflow:auto;overflow-x:hidden;"></div>
+        <div id="myname_list" style="width:95%;overflow:auto;oversflow-x:hidden;"></div>
+
       </table>
     </div>
 
-    <!--script>
-      let reload_textcolor, reload_editBtncolor, reload_editbtnTextcolor;
+    <script>
+      let tColor, bColor, wColor;
 
-      reload_textcolor = window.top.$('#top').contents().find('.slider').css("background-color");
-      reload_editBtncolor = window.top.$('#top').contents().find("#playtitle").css('color');
-      reload_editbtnTextcolor = window.top.$(".dropbtn").css('color');
+      tColor = window.top.$('#top').contents().find('.slider').css("background-color");
+      bColor = window.top.$('#top').contents().find("#playtitle").css('color');
+      wColor = window.top.$(".dropbtn").css('color');
 
       show_mylist();
-      reload_mynameCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
+      reload_mynameCanvas(tColor,bColor,wColor);
 
-      window.addEventListener('message', function(e) {
-        console.log('center_mylist:',e);
-        show_myname(e.data[2]);
-        reload_mynameCanvas(reload_textcolor,reload_editBtncolor,reload_editbtnTextcolor);
-      });
-
-    </script!-->
+    </script>
 
 
   </body>
