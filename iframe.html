@@ -58,7 +58,7 @@
       <!--===================popup===================!-->
       <div class="popup">
         <div class="popup-content">
-          <!--foam action="#" method="POST" enctype="text/plain"!-->
+          <!--form action="#" method="POST" enctype="text/plain"!-->
           <!--form method=POST enctype="text/plain"!-->
             <input type="submit" id= makePopupBtn value="new" onclick="create_mylist();"></input><!--a href="">new</a!-->
             <input type="submit" id= editPopupBtn value="edit" onclick="edit_mylist();"></input>
@@ -110,22 +110,22 @@
 
         //console.log('e:',e,'e.data:',e.data,'e.origin:',e.origin);
 
-        //================i_popupMylist==============
-        if(e.data[0] === "i_popupMylist" && e.data[1] === "play_mylistBtn"){
-          console.log("i_popupMylist_____play_mylistBtn");
+        //================i_mylist==============
+        if(e.data[0] === "i_mylist" && e.data[1] === "play_mylistBtn"){
+          console.log("i_mylist_____play_mylistBtn");
         //  console.log("e.data[2]:",e.data[2]);
           set_audio(e.data[2]);
           document.querySelector('.popup-goto-content').style.display = 'none';
           document.querySelector('.popup').style.display = 'none';
         }
-        else if(e.data[0] === "i_popupMylist" && e.data[1] === "goto_playCheckedsong"){
-          console.log("i_popupMylist_____goto_playCheckedsong","e.data[2]:",e.data[2]);
+        else if(e.data[0] === "i_mylist" && e.data[1] === "goto_playCheckedsong"){
+          console.log("i_mylist_____goto_playCheckedsong","e.data[2]:",e.data[2]);
           set_audio(e.data[2]);
           document.querySelector('.popup-goto-content').style.display = 'none';
           document.querySelector('.popup').style.display = 'none';
         }
-        else if(e.data[0] === "i_popupMylist" && e.data[1] === "goto_playBtn"){
-          console.log("i_popupMylist_____goto_playBtn","e.data[2]:",e.data[2]);
+        else if(e.data[0] === "i_mylist" && e.data[1] === "goto_playBtn"){
+          console.log("i_mylist_____goto_playBtn","e.data[2]:",e.data[2]);
           set_audio(e.data[2]);
           document.querySelector('.popup-goto-content').style.display = 'none';
           document.querySelector('.popup').style.display = 'none';
