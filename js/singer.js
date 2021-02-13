@@ -8,30 +8,28 @@ let singerData = [];
 
 //========================reload(color)
 function reload_singerCanvas(tColor, bColor, wColor){
+
   $("#singerTitle").css('color',bColor);
-
   $("#allsingerBtn").css('color',bColor);
-
   $(".singer_list").css('color',tColor);
-
-  $(".singer_edit").css('color',wColor);
-  $(".singer_edit").css('background-color',bColor);
-
   $(".singer_checkbox").css('background-color',wColor);
+
 }
 
-//========================singer data form(singer,songs,singerbtn_id,checkbox_id,editbtn_id)
-function singerID(singer,songs,titlebtn,checkbox,editbtn) {
+//========================singer data form(singer,songs,singerbtn_id,checkbox_id)
+function singerID(singer,songs,titlebtn,checkbox) {
+
   this.singer = singer;
   this.songs = songs;
   this.titlebtn = titlebtn;
   this.checkbox = checkbox;
-  this.editbtn = editbtn;
+
 }
 
 //========================sort singer & singersongs
 
 function sort_singer(){
+
   songData = show_songData(); //song.js
 
   for(var i = 0; i < songData.length; i++){
@@ -55,12 +53,15 @@ function sort_singer(){
   }
   //console.log("end_________singerSonglist:",singerSongDic);
   return singerSongDic
+
 }
 
 //========================draw singerlist & save singerData
 
 function show_singer(){
+
   singerSongDic = sort_singer();
+
   var songs;
 
   for(key in singerSongDic){
@@ -83,16 +84,9 @@ function show_singer(){
     checkbox.setAttribute('onclick','get_checkedsingerBtn();');
     document.getElementById('name_list').appendChild(checkbox);
 
-    editbtn= document.createElement('input');
-    editbtn.setAttribute("type", 'button');
-    editbtn.setAttribute('value',"edit");
-    editbtn.setAttribute('class','singer_edit');
-    editbtn.setAttribute('id',key+'+editbtn');
-    document.getElementById('name_list').appendChild(editbtn);
-
     document.write('<br>');
 
-    var Singer = new singerID(singer,songs,titlebtn.id,checkbox.id,editbtn.id);
+    var Singer = new singerID(singer,songs,titlebtn.id,checkbox.id);
     singerDic[singer] = Singer;
 
   }
@@ -104,35 +98,39 @@ function show_singer(){
 
 //========================playsingerbtn
 function play_singerBtn(btn){
+
   song = singerDic[btn.value].songs;
 
   singer_sig = "play_singerBtn"
 
-  window.parent.postMessage([singer_id,singer_sig,song], 'http://localhost:3000/iframe.html');
-  console.log('song:',song)
+  window.parent.postMessage([singer_id, singer_sig, song], 'http://localhost:3000/iframe.html');
+  //console.log('song:',song)
 
 }
+
 //========================recognize checked singer
 function get_checkedsingerBtn(){
+
   var checkedsingerlist = [];
 
   for(key in singerDic){
     if (document.getElementById(singerDic[key].checkbox).checked){
       var songs = singerDic[key].songs;
+
       for(var i = 0; i < songs.length; i++){
-        console.log("typeof songs[i]:", typeof songs[i]);
+        //console.log("typeof songs[i]:", typeof songs[i]);
         checkedsingerlist.push(songs[i]);
       }
       //console.log("checked_singer: ",singerDic[key].songs,"key.checkbox:",singerDic[key].checkbox);
-    }
-    else{
+    }else{
       continue;
     }
   }
-  console.log("checkedsingerlist: ",checkedsingerlist);
+  //console.log("checkedsingerlist: ",checkedsingerlist);
 
   singer_sig = "get_checkedsingerBtn";
-  window.parent.postMessage([singer_id,singer_sig,checkedsingerlist], 'http://localhost:3000/iframe.html');
+
+  window.parent.postMessage([singer_id, singer_sig, checkedsingerlist], 'http://localhost:3000/iframe.html');
 
 }
 
@@ -140,5 +138,7 @@ function get_checkedsingerBtn(){
 function play_allsinger(){
   //console.log("play_allsinger_songData: ",songData);
   singer_sig = "play_allsinger";
-  window.parent.postMessage([singer_id,singer_sig,songData], 'http://localhost:3000/iframe.html');
+
+  window.parent.postMessage([singer_id, singer_sig, songData], 'http://localhost:3000/iframe.html');
+
 }
