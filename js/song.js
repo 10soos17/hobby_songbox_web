@@ -7,42 +7,42 @@ let songData = [];
 
 //========================reload(color)
 function reload_songCanvas(tColor, bColor, wColor){
+
   $("#songTitle").css('color',bColor);
-
   $("#allsongBtn").css('color',bColor);
-
   $(".song_list").css('color',tColor);
-
-  $(".song_edit").css('color',wColor);
-  $(".song_edit").css('background-color',bColor);
-
   $(".song_checkbox").css('background-color',wColor);
+
 }
 
-//========================song data form(source,title,filetyle,songbtn_id,checkbox_id,editbtn_id)
-function songID(original,title,finaltype,titlebtn,checkbox,editbtn) {
+//========================song data form(source,title,filetyle,songbtn_id,checkbox_id)
+function songID(original,title,finaltype,titlebtn,checkbox) {
+
   this.original = original;
   this.title = title;
   this.finaltype = finaltype;
   this.titlebtn = titlebtn;
   this.checkbox = checkbox;
-  this.editbtn = editbtn;
+
 }
 
 //========================read_songdata from iframe.html
 function show_songData(){
+
   var song_db = window.top.$('#top').contents().find(".song_db").children();
   //console.log("song_db:",song_db);
   for(var i=0; i < song_db.length; i++){
     songData.push(song_db[i].id);
   }
-  console.log("songData:",songData);
+  //console.log("songData:",songData);
   return songData
 }
 
 //========================draw songlist & save dongData
 function show_song(){
+
   songData = show_songData();
+
   for(var i = 0; i < songData.length; i++){
 
     var original = songData[i];
@@ -78,16 +78,9 @@ function show_song(){
     checkbox.setAttribute('onclick','get_checkedBtn();');
     document.getElementById('title_list').appendChild(checkbox);
 
-    editbtn= document.createElement('input');
-    editbtn.setAttribute("type", 'button');
-    editbtn.setAttribute('value',"edit");
-    editbtn.setAttribute('class','song_edit');
-    editbtn.setAttribute('id',title+'+editbtn');
-    document.getElementById('title_list').appendChild(editbtn);
-
     document.write('<br>');
 
-    var S = new songID(original,title,finaltype,titlebtn.id,checkbox.id,editbtn.id);
+    var S = new songID(original,title,finaltype,titlebtn.id,checkbox.id);
 
     songDic[title] = S;
 
@@ -100,17 +93,21 @@ function show_song(){
 
 //========================playsongbtn
 function play_songBtn(btn){
+
   song = [];
+
   song.push(songDic[btn.value].original);
 
   song_sig = "play_songBtn"
 
   window.parent.postMessage([song_id, song_sig, song], 'http://localhost:3000/iframe.html');
-  console.log('song:',song)
+  //console.log('song:',song)
+
 }
 
 //========================recognize checked song
 function get_checkedBtn(){
+
   var checkedlist=[];
 
   for(key in songDic){
@@ -123,10 +120,11 @@ function get_checkedBtn(){
       continue;
     }
   }
-  console.log("checkedlist: ",checkedlist);
+  //console.log("checkedlist: ",checkedlist);
 
   song_sig = "get_checkedBtn";
-  window.parent.postMessage([song_id,song_sig,checkedlist], 'http://localhost:3000/iframe.html');
+
+  window.parent.postMessage([song_id, song_sig, checkedlist], 'http://localhost:3000/iframe.html');
 
 }
 
@@ -134,7 +132,9 @@ function get_checkedBtn(){
 function play_allsong(){
   //console.log("play_allsong_songData: ",songData);
   song_sig = "play_allsong";
-  window.parent.postMessage([song_id,song_sig,songData], 'http://localhost:3000/iframe.html');
+
+  window.parent.postMessage([song_id, song_sig, songData], 'http://localhost:3000/iframe.html');
+
 }
 
 
