@@ -35,7 +35,6 @@ exports.get_songData = function(){
 exports.get_mylistData = function(){
   s_db.query('SELECT title, song FROM mylist LEFT JOIN mylist_songs ON mylist.title = mylist_songs.mylist_title;', function(error, mylist){
   //  console.log(songs)
-
     mylist_list = '';
     for(var i =0; i < mylist.length; i++){
       mylist_list += `<option id="${mylist[i].title}:${mylist[i].song}">${mylist[i].title}:${mylist[i].song}</option>`;
@@ -43,4 +42,60 @@ exports.get_mylistData = function(){
     //console.log("mylist_list:________",mylist_list);
   });
   return mylist_list;
+}
+
+exports.get_tophtml = function(){
+  song_list = this.get_songData();
+  mylist_list = this.get_mylistData();
+  console.log("db_test_______:",song_list,mylist_list);
+
+  var html = `
+    <html>
+      <style>
+        .song_db{
+          font-size: 0px;
+          text-align: left;
+
+          width: 0px;
+
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow: ellipsis;
+
+          padding:0px;
+          margin-top:0px;
+          margin-left:0px;
+          border:0px;
+
+          background-color: rgb(0,0,0,0);
+          color:rgb(0,0,0,0);
+        }
+        .mylist_db{
+          font-size: 0px;
+          text-align: left;
+
+          width: 0px;
+
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow: ellipsis;
+
+          padding:0px;
+          margin-top:0px;
+          margin-left:0px;
+          border:0px;
+
+          background-color: rgb(0,0,0,0);
+          color:rgb(0,0,0,0);
+        }
+      </style>
+      <select class="song_db">
+        ${song_list}
+      </select>
+      <select class="mylist_db">
+        ${mylist_list}
+      </select>
+    </html>
+    `
+  return html;
 }
