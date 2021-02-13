@@ -1,8 +1,11 @@
 let iframe_id = "i_iframe";
 let iframe_sig;
 
-let popupMylist_id = "i_popupMylist";
-let popupMylist_sig;
+//mylist id, sig -> iframe.html && mylist.html 에서 동일하게 사용
+let i_mylist_id = "i_mylist";
+let i_mylist_sig;
+
+
 //=============================date & time======================================
 //https://www.w3schools.com/js/js_date_methods.asp
 //Date(year, month, day, hours, minutes, seconds, milliseconds)
@@ -292,6 +295,7 @@ let colorBtnId;
 
 //================================color function================================
 function check_btnColor(){
+
   let stopbtn_color = $('#top').contents().find('#stop');
   let pausebtn_color = $('#top').contents().find('#pause');
 
@@ -305,6 +309,7 @@ function check_btnColor(){
 }
 
 function select_color(self){
+
   colorBtnId = $("#colorBtn option:selected").attr('id');
   before_i_color = i_color;
 
@@ -407,15 +412,18 @@ function select_color(self){
 }
 //========================[about popup mylist]==================================
 //==============================================================================
+
 //========================mylist data form(myname,songs,singerbtn_id,checkbox_id,editbtn_id)
 let mylistDic = {};//get data from mysql
 let mylistSongDic = {};
 
 function mylistID(myname,mysongs,titlebtn,checkbox) {
+
   this.myname = myname;
   this.mysongs = mysongs;
   this.titlebtn = titlebtn;
   this.checkbox = checkbox;
+
 }
 
 //========================mylist 내부의 song data form(song,titlebtn,checkbox)
@@ -423,12 +431,15 @@ let mynameDic = {};
 let mynameList = [];
 
 function mynameID(song,titlebtn,checkbox) {
+
   this.song = song;
   this.titlebtn = titlebtn;
   this.checkbox = checkbox;
+
 }
 
 function get_mylist(){
+
   mylistSongDic = {};
   var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
   //console.log("song_db:",song_db);
@@ -436,24 +447,26 @@ function get_mylist(){
     temp_db = mylist_db[i].id.split(":");
     thisMylist = temp_db[0];
     thisMylistSong = temp_db[1];
-    console.log("temp_db:",temp_db);
+    //console.log("temp_db:",temp_db);
 
     if(temp_db[0] in mylistSongDic){
       mylistSongDic[temp_db[0]].push(temp_db[1]);
     }else if(temp_db[1] === ""){//mylist 새로 이름만 생성한 경우
-      mylistSongDic[temp_db[0]] = [];
+      mylistSongDic[temp_db[0]] = [];//"null"값 들어감
     }else{
       mylistSongDic[temp_db[0]] = [];
       mylistSongDic[temp_db[0]].push(temp_db[1]);
     }
   }
-  console.log("mylistSongDic:",mylistSongDic);
+  //console.log("mylistSongDic:",mylistSongDic);
   return mylistSongDic;
+
 }
 
 //==============================================================================
 //========================reload(color)
 function reload_popupCanvas(tColor, bColor, wColor){
+
   $(".popup").css('background-color',wColor);
   $(".popup").css('opacity', 0.7);
   $(".popup-create-content").css('background-color',wColor);
@@ -500,8 +513,8 @@ function reload_popupCanvas(tColor, bColor, wColor){
 function popup_showMylist(){
   //btn color 때문에 설정
   mylistSongDic = get_mylist();
-  var bColor =  $("#namePopupHolder").css('border-color');
 
+  var bColor =  $("#namePopupHolder").css('border-color');
   var popupList = $('#popup_mylist');
   var songs;
 
@@ -539,6 +552,7 @@ function popup_showMylist(){
 //==========================popup functions=====================================
 //==========================close_popup
 function close_popup(){
+
   var tColor  = $("#namePopupHolder").css('color');
   var bColor =  $("#namePopupHolder").css('border-color');
   var wColor =   $(".popup").css('background-color');
@@ -562,22 +576,23 @@ function close_popup(){
 
 //========================recognize checked mylist
 function get_checkedMylistBtn(){
+
   var checkedMylist = [];
-  console.log("checkedMylist: ",checkedMylist);
+  //console.log("checkedMylist: ",checkedMylist);
   for(key in mylistDic){
     if (document.getElementById(mylistDic[key].checkbox).checked){
       checkedMylist.push(mylistDic[key].myname);
-      console.log("checked_mylist: ",mylistDic[key].myname);
+      //console.log("checked_mylist: ",mylistDic[key].myname);
     }
     else{
       continue;
     }
   }
-  console.log("checkedMylist: ",checkedMylist);
+  //console.log("checkedMylist: ",checkedMylist);
   return checkedMylist;
+
 }
 //==========================create mylist
-//mysql 연결 후에 수정(send message -> insert,edit,delete mysql -> reload)
 function create_mylist(){
 
   var tColor  = $("#namePopupHolder").css('color');
@@ -587,7 +602,6 @@ function create_mylist(){
   if(document.querySelector('#makePopupBtn').value === 'new'){
 
     document.querySelector('.popup-create-content').style.display = 'flex';
-
     document.querySelector('#namePopupLabel').innerHTML = "Name";
 
     document.querySelector('#makePopupBtn').style.color = wColor;
@@ -602,10 +616,10 @@ function create_mylist(){
 
   }
   else if(document.querySelector('#makePopupBtn').value === '✔︎'){
-    var createName = document.querySelector('#namePopupHolder').value;
-    console.log("createName:",createName);
-    if(createName === ""){
 
+    var createName = document.querySelector('#namePopupHolder').value;
+    //console.log("createName:",createName);
+    if(createName === ""){
       document.querySelector('.popup-create-content').style.display = 'none';
       document.querySelector('.popup-goto-content').style.display = 'none';
       //document.querySelector('#namePopupHolder').value = `Write listname!!!`;
@@ -616,15 +630,16 @@ function create_mylist(){
       mylist_list = window.top.$('#top').contents().find(".mylist_db");
       mylist_list.append(`<option id="${createName}:">${createName}:</option>`);
       console.log("mylist_list: ",mylist_list);
+
       popup_showMylist();
       //document.querySelector('.popup-create-content').style.display = 'none';
       document.querySelector('#namePopupHolder').value = "";//`'${createName}' was created!`;
 
-      //request to server
+      //request to server(insesrt mysql)
       var httpRequest = new XMLHttpRequest();
 
       var data = JSON.stringify({
-            id: "i_popupMylist",
+            id: "i_mylist",
             sig: "create_mylist",
             contents: createName
             })
@@ -642,16 +657,17 @@ function create_mylist(){
   }
 
 }
+
 //==========================edit mylist name
 function edit_mylist(){
+
+  var checkedMylist = get_checkedMylistBtn();
+
   var tColor  = $("#namePopupHolder").css('color');
   var bColor =  $("#namePopupHolder").css('border-color');
   var wColor =   $(".popup").css('background-color');
 
-  var checkedMylist = get_checkedMylistBtn();
-
   if(document.querySelector('#editPopupBtn').value === 'edit'){
-
 
     document.querySelector('.popup-create-content').style.display = 'flex';
     document.querySelector('#namePopupHolder').value = "";
@@ -669,16 +685,18 @@ function edit_mylist(){
   }
   else if(document.querySelector('#editPopupBtn').value === '✔︎'){
     if(checkedMylist.length !== 1){
+
       document.querySelector('.popup-create-content').style.display = 'none';
       document.querySelector('.popup-goto-content').style.display = 'none';
       //document.querySelector('#namePopupHolder').value = "Select one!!!";
       alert("Select one!!!");
 
     }else{
+
       var afterName = document.querySelector('#namePopupHolder').value;
       var beforeName = checkedMylist[0];
 
-      console.log("afterName:",afterName,"beforeName:",beforeName);//,"beforeSongs:",beforeSongs);
+    //  console.log("afterName:",afterName,"beforeName:",beforeName);//,"beforeSongs:",beforeSongs);
 
       mylistSongDic = {};
       var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
@@ -687,7 +705,7 @@ function edit_mylist(){
         temp_db = mylist_db[i].id.split(":");
         thisMylist = temp_db[0];
         thisMylistSong = temp_db[1];
-        console.log("temp_db:",temp_db);
+      //  console.log("temp_db:",temp_db);
 
         if(temp_db[0] === beforeName){
           mylist_db[i].id = `${afterName}:${temp_db[1]}`;
@@ -700,11 +718,11 @@ function edit_mylist(){
       document.querySelector('#namePopupHolder').value = "";//`'${beforeName}' was edited!`;
       document.querySelector('#gotoLabel').innerHTML = afterName;
 
-      //request to server
+      //request to server(upadate mysql)
       var httpRequest = new XMLHttpRequest();
 
       var data = JSON.stringify({
-            id: "i_popupMylist",
+            id: "i_mylist",
             sig: "edit_mylist",
             contents: [beforeName, afterName]
             })
@@ -713,19 +731,24 @@ function edit_mylist(){
       httpRequest.send(data);
 
     }
+
     document.querySelector('#editPopupBtn').style.color = bColor;
     document.querySelector('#editPopupBtn').style.borderColor = bColor;
     document.querySelector('#editPopupBtn').style.backgroundColor = wColor;
     document.querySelector('#editPopupBtn').value = 'edit';
+
   }
 }
 //==========================delete mylist
 function delete_mylist(){
+
   var checkedMylist = get_checkedMylistBtn();
+
   if(checkedMylist.length === 0){
+
     alert("Select list!!!");
-  }
-  else{
+
+  }else{
     for(var i = 0; i < checkedMylist.length; i++){
       //delete mylistSongDic[checkedMylist[i]];
       var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
@@ -736,38 +759,44 @@ function delete_mylist(){
         thisMylistSong = temp_db[1];
 
         if(temp_db[0] === checkedMylist[i]){
-          console.log("temp_db_____delete:",temp_db[0]);
+        //  console.log("temp_db_____delete:",temp_db[0]);
           mylist_db[j].remove();
+
         }
       }
     }
   }
   //console.log("delete_mylistSongDic:",mylistSongDic);
   popup_showMylist();
+
   document.querySelector('.popup-goto-content').style.display = 'none';
 
-  //request to server
+  //request to server(delete mysql)
   var httpRequest = new XMLHttpRequest();
 
   var data = JSON.stringify({
-        id: "i_popupMylist",
+        id: "i_mylist",
         sig: "delete_mylist",
         contents: checkedMylist
         })
 
   httpRequest.open('POST', 'http://localhost:3000');
   httpRequest.send(data);
+
 }
 
 //========================play mylistbtn(mylistBtn click -> play)
 function play_mylistBtn(){
+
   var checkedMylist = get_checkedMylistBtn();
   var songs = {};
   var songslist = [];
 
   if (checkedMylist.length === 0){
+
     alert("Select list!!!");
     return 0;
+
   }else{
     for(var i = 0; i < checkedMylist.length; i++){
       for(var j = 0; j < mylistDic[checkedMylist[i]].mysongs.length; j++){
@@ -777,20 +806,23 @@ function play_mylistBtn(){
     for(key in songs){
       songslist.push(key);
     }
-    popupMylist_sig = "play_mylistBtn"
 
-    window.parent.postMessage([popupMylist_id,popupMylist_sig,songslist], 'http://localhost:3000/iframe.html');
+    i_mylist_sig = "play_mylistBtn"
+
+    window.parent.postMessage([i_mylist_id, i_mylist_sig, songslist], 'http://localhost:3000/iframe.html');
     console.log('songs:',songs,"songslist",songslist);
+
   }
 }
 
 //==========================add song(singer)(checked song(singer) -> checked mylist)
 //mynameID(song,titlebtn,checkbox)
 function add_songToMylist(){
+
   var checkedMylist = get_checkedMylistBtn();
-  console.log("checkedlist:",checkedlist,"checkedMylist:",checkedMylist);
-  console.log("before_mylistSongDic:",mylistSongDic);
   var aftercheckedlist = [];
+//  console.log("checkedlist:",checkedlist,"checkedMylist:",checkedMylist);
+//  console.log("before_mylistSongDic:",mylistSongDic);
 
   for(var i = 0; i < checkedlist.length; i++){
     for(var j = 0; j < checkedMylist.length; j++){
@@ -801,20 +833,19 @@ function add_songToMylist(){
       else{
         //console.log("push_song");
         if(aftercheckedlist[j] !== undefined){
-          console.log(aftercheckedlist[j])
+          //console.log(aftercheckedlist[j])
           aftercheckedlist[j].push(checkedlist[i]);
         }
         else{
-          console.log("first",aftercheckedlist[j]);
+        //  console.log("first:", aftercheckedlist[j]);
           aftercheckedlist[j] = [];
           aftercheckedlist[j].push(checkedlist[i]);
         }
 
         //mylistSongDic[checkedMylist[j]].push(checkedlist[i]);
-        console.log("push to mylistSongDic:_______",mylistSongDic[checkedMylist[j]]);
+        //console.log("push to mylistSongDic_______:",mylistSongDic[checkedMylist[j]]);
         var mylist_list = window.top.$('#top').contents().find(".mylist_db");
         mylist_list.append(`<option id="${checkedMylist[j]}:${checkedlist[i]}">${checkedMylist[j]}:${checkedlist[i]}</option>`);
-
       }
     }
   }
@@ -834,11 +865,11 @@ function add_songToMylist(){
     }
   }
 
-  //request to server
+  //request to server(insert mysql)
   var httpRequest = new XMLHttpRequest();
 
   var data = JSON.stringify({
-            id: "i_popupMylist",
+            id: "i_mylist",
             sig: "add_songToMylist",
             contents: [checkedMylist, aftercheckedlist]
             })
@@ -855,13 +886,14 @@ function add_songToMylist(){
 //========================1_1.goto(draw popup mylist 클릭 -> draw songslist)=====
 
 function goto_mylist(btn){
+
+  mylistSongDic = get_mylist();
   //btn color 때문에 설정
   var bColor =  $("#namePopupHolder").css('border-color');
   var thisname = btn.value;
   var gotoList = $('#gotoMylist');
   var song;
 
-  mylistSongDic = get_mylist();
   mynameDic = {};
   mynameList = mylistSongDic[thisname];
   gotoList.empty();
@@ -869,7 +901,7 @@ function goto_mylist(btn){
   document.querySelector('#gotoLabel').innerHTML = thisname;
   document.querySelector('.popup-goto-content').style.display = 'flex';
 
-  console.log("thisname:",thisname,"mynameList:",mynameList);
+  //console.log("thisname:",thisname,"mynameList:",mynameList);
 
   if(mynameList[0] !== "null" || mynameList.length !== 1){
     for(var i = 0; i < mynameList.length; i++){
@@ -902,54 +934,64 @@ function goto_mylist(btn){
 //========================goto functions========================================
 //========================goto_recognize checked mylist=========================
 function goto_checkedBtn(){
+
   var checkedMylist = [];
-  console.log("checkedMylist: ",checkedMylist);
+  //console.log("checkedMylist: ",checkedMylist);
   for(key in mynameDic){
     if (document.getElementById(mynameDic[key].checkbox).checked){
+
       checkedMylist.push(mynameDic[key].song);
-      console.log("checked_mylist: ",mynameDic[key].song);
-    }
-    else{
+      //console.log("checked_mylist: ",mynameDic[key].song);
+    }else{
       continue;
     }
   }
-  console.log("checkedMylist: ",checkedMylist);
+  //console.log("checkedMylist: ",checkedMylist);
   return checkedMylist;
 }
 //========================goto_playbtn(songBtn click->play)
 function goto_playBtn(btn){
+
   var song = [];
   song.push(mynameDic[btn.value].song);
 
-  popupMylist_sig = "goto_playBtn"
+  i_mylist_sig = "goto_playBtn"
 
-  window.parent.postMessage([popupMylist_id,popupMylist_sig,song], 'http://localhost:3000/iframe.html');
-  console.log('checkedMylist:',checkedMylist);
+  window.parent.postMessage([i_mylist_id, i_mylist_sig, song], 'http://localhost:3000/iframe.html');
+  //console.log('checkedMylist:',checkedMylist);
 }
 //========================goto_playchceckedsong(checkBtn click->get checkedlist->play)
 function goto_playCheckedsong(){
+
   var checkedMylist = goto_checkedBtn();
-  popupMylist_sig = "goto_playCheckedsong"
+
   if (checkedMylist.length === 0){
+
     alert("Select song!!!");
     return 0;
-  }
-  else{
-    window.parent.postMessage([popupMylist_id,popupMylist_sig,checkedMylist], 'http://localhost:3000/iframe.html');
+
+  }else{
+
+    i_mylist_sig = "goto_playCheckedsong"
+
+    window.parent.postMessage([i_mylist_id, i_mylist_sig, checkedMylist], 'http://localhost:3000/iframe.html');
     console.log('checkedMylist:',checkedMylist);
   }
 }
 //========================goto_deleteBtn(deleteBtn click->delete song)
 function goto_deleteBtn(){
-  var thisMyname = document.querySelector('#gotoLabel').innerHTML;
+
   var checkedMylist = goto_checkedBtn();
+
+  var thisMyname = document.querySelector('#gotoLabel').innerHTML;
   var beforeMylist = mylistSongDic[thisMyname];
   var afterMylist = [];
-  console.log("beforeMylist:",beforeMylist);
+  //console.log("beforeMylist:",beforeMylist);
   if(checkedMylist.length === 0){
+
     alert("Select list!!!");
-  }
-  else{
+
+  }else{
 
     for(var i = 0; i < checkedMylist.length; i++){
       var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
@@ -957,7 +999,7 @@ function goto_deleteBtn(){
         temp_db = mylist_db[j].id.split(":");
 
         if(temp_db[0] === thisMyname && temp_db[1] === checkedMylist[i]){
-          console.log("goto_temp_db_____delete:",temp_db[0]);
+          //console.log("goto_temp_db_____delete:",temp_db[0]);
           mylist_db[j].remove();
         }
       }
@@ -965,20 +1007,20 @@ function goto_deleteBtn(){
 
   }
   var popup_mylist = $("#popup_mylist").children();
-  console.log("popup_mylist:",popup_mylist,popup_mylist.length);
+  //console.log("popup_mylist:",popup_mylist,popup_mylist.length);
 
   for(var i = 0; i < popup_mylist.length; i++){
     if(popup_mylist[i].value === thisMyname){
       var thisBtn = popup_mylist[i];
-      console.log("thisBtn:",thisBtn);
+      //console.log("thisBtn:",thisBtn);
       goto_mylist(thisBtn);
       break;
     }
-    //request to server
+    //request to server(delete mysql)
     var httpRequest = new XMLHttpRequest();
 
     var data = JSON.stringify({
-          id: "i_popupMylist",
+          id: "i_mylist",
           sig: "goto_deleteBtn",
           contents: [thisMyname, checkedMylist]
         });
@@ -989,10 +1031,10 @@ function goto_deleteBtn(){
   //  location.reload(true);
   //  document.getElementById('top').contentDocument.location.reload(true);
   }
-
 }
 //========================goto_close
 function goto_close(){
+
   var tColor  = $("#namePopupHolder").css('color');
   var bColor =  $("#namePopupHolder").css('border-color');
   var wColor =   $(".popup").css('background-color');
@@ -1008,4 +1050,5 @@ function goto_close(){
   document.querySelector('#editPopupBtn').style.borderColor = bColor;
   document.querySelector('#editPopupBtn').style.backgroundColor = wColor;
   document.querySelector('#editPopupBtn').value = 'edit';
+
 }
