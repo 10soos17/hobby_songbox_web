@@ -41,10 +41,6 @@ var Wins = {
     //center.html -> colorpicker
     $('#center').contents().find('#center_animate').css('color',color);
     $('#center').contents().find('#center_clear').css('color',color);
-    //song.css
-    $("#center").contents().find('.song_edit').css("color",color);
-    //singer.css
-    $("#center").contents().find('.singer_edit').css("color",color);
     //menu.css
     $('.dropbtn').css("color",color);
     $('.dropdown-content a').css("color",color);
@@ -181,10 +177,6 @@ var Boxs = {
     //center.html -> colorpicker
     $("#center").contents().find('#center_animate').css("background-color",color);
     $("#center").contents().find('#center_clear').css("background-color",color);
-    //i_center->song.css
-    $("#center").contents().find('.song_edit').css("background-color",color);
-    //i_center->singer.css
-    $("#center").contents().find('.singer_edit').css("background-color",color);
     //i_top->slider.css
     $("#top").contents().find('.slider -slider-thumb').css("background-color",color);
     $("#top").contents().find('.slider -moz-range-thumb').css("background-color",color);
