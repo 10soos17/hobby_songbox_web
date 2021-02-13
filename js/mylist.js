@@ -4,10 +4,9 @@
 function show_mylist(){
 
   mylistSongDic = get_mylist();
-  console.log("show_mylist_________:",mylistSongDic);
+  //console.log("show_mylist_________:",mylistSongDic);
   //btn color 때문에 설정
   var bColor =  $("#namePopupHolder").css('border-color');
-
   var mynameList = window.top.$('#center').contents().find("#myname_list");
   var songs;
 
@@ -19,7 +18,7 @@ function show_mylist(){
     myname = key;
     songs = mylistSongDic[key];
 
-    console.log("show_mylist_______myname:",myname,"songs:",songs);
+    //console.log("show_mylist_______myname:",myname,"songs:",songs);
 
     titlebtn=`<input type="button" class = "mylist_list" id="${key}+titlebtn" value="${key}"
                 onclick="show_myname(this);" style="color:${bColor}"></input>`;
@@ -36,7 +35,7 @@ function show_mylist(){
     var Mylist = new mylistID(myname,songs,titlebtnId,checkboxId);
     mylistDic[myname] = Mylist;
 
-    console.log("show_mylist__________mylistDic:",mylistDic);
+    //console.log("show_mylist__________mylistDic:",mylistDic);
   }
 
 }
@@ -45,6 +44,7 @@ function show_mylist(){
 //==========================draw mylist(mylist.html) functions==================
 //========================reload(color)
 function reload_mynameCanvas(tColor,bColor,wColor){
+
   $("#mylistTitle").css('color',bColor);
 
   $(".mylist_list").css('color',tColor);
@@ -79,21 +79,14 @@ function reload_mynameCanvas(tColor,bColor,wColor){
   $("#mylist_pageBtn").css('color',bColor);
   $("#mylist_pageBtn").css('border-color',bColor);
   $("#mylist_pageBtn").css('background-color',wColor);
+
 }
 
 //========================show mysongs(mylist 클릭 -> draw songslist)============
 function show_myname(btn){
 
   thisname = btn.value;
-
-  console.log("thisname:",thisname,"mynameList:",mynameList);
-
-  document.querySelector('#mylistTitle').value = thisname;
-  document.querySelector('#makeBtn').style.display = 'none'; //change setting pageBtn
-  document.querySelector('#editBtn').style.display = 'none';
-  document.querySelector('#deleteBtn').style.display = 'flex';
-  document.querySelector('#mylist_pageBtn').style.display = 'flex';
-
+  //console.log("thisname:",thisname,"mynameList:",mynameList);
   var mynamelistId = window.top.$('#center').contents().find("#myname_list");
   var song;
 
@@ -102,7 +95,14 @@ function show_myname(btn){
   mynameList = mylistSongDic[thisname];
   mynamelistId.empty();
 
+  document.querySelector('#mylistTitle').value = thisname;
+  document.querySelector('#makeBtn').style.display = 'none'; //change setting pageBtn
+  document.querySelector('#editBtn').style.display = 'none';
+  document.querySelector('#deleteBtn').style.display = 'flex';
+  document.querySelector('#mylist_pageBtn').style.display = 'flex';
+
   if(mynameList[0] !== "null" || mynameList.length !== 1){
+
     for(var i = 0; i < mynameList.length; i++){
 
       song = mynameList[i];
@@ -154,20 +154,25 @@ function create_mylistpage(){
 
   }
   else if(document.querySelector('#makeBtn').value === '✔︎'){
+
     var createName = document.querySelector('#nameHolder').value;
-    console.log("createName:",createName);
+    //console.log("createName:",createName);
+
     if(createName === ""){
 
       document.querySelector('.create-content').style.display = 'none';
       alert("Write listname!!!");
+
     }else{
+
       mylistSongDic[createName] = [];
 
       mylist_list = window.top.$('#top').contents().find(".mylist_db");
       mylist_list.append(`<option id="${createName}:">${createName}:</option>`);
-      console.log("mylist_list: ",mylist_list);
+      //console.log("mylist_list: ",mylist_list);
 
       show_mylist();
+
       document.querySelector('#nameHolder').value = "";
       document.querySelector('.create-content').style.display = 'none';
 
@@ -175,7 +180,7 @@ function create_mylistpage(){
       var httpRequest = new XMLHttpRequest();
 
       var data = JSON.stringify({
-            id: "i_popupMylist",
+            id: "i_mylist",
             sig: "create_mylist",
             contents: createName
             })
@@ -184,23 +189,25 @@ function create_mylistpage(){
       httpRequest.send(data);
 
     }
+
     document.querySelector('#makeBtn').style.color = bColor;
     document.querySelector('#makeBtn').style.borderColor = bColor;
     document.querySelector('#makeBtn').style.backgroundColor = wColor;
     document.querySelector('#makeBtn').value = 'new';
+
   }
 }
 
 //==========================edit mylist name
 function edit_mylistpage(){
+
+  var checkedMylist = get_checkedMylistBtn();//---> iframe.js function
+
   var tColor  = $("#nameHolder").css('color');
   var bColor =  $("#nameHolder").css('border-color');
   var wColor =   $(".create-content").css('background-color');
 
-  var checkedMylist = get_checkedMylistBtn();//---> iframe.js function
-
   if(document.querySelector('#editBtn').value === 'edit'){
-
 
     document.querySelector('.create-content').style.display = 'flex';
     document.querySelector('#nameHolder').value = "";
@@ -215,17 +222,20 @@ function edit_mylistpage(){
     document.querySelector('#makeBtn').style.borderColor = bColor;
     document.querySelector('#makeBtn').style.backgroundColor = wColor;
     document.querySelector('#makeBtn').value = 'new';
+
   }
   else if(document.querySelector('#editBtn').value === '✔︎'){
     if(checkedMylist.length !== 1){
+
       document.querySelector('.create-content').style.display = 'none';
       alert("Select one!!!");
 
     }else{
+
       var afterName = document.querySelector('#nameHolder').value;
       var beforeName = checkedMylist[0];
 
-      console.log("afterName:",afterName,"beforeName:",beforeName);
+      //console.log("afterName:",afterName,"beforeName:",beforeName);
 
       mylistSongDic = {};
       var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
@@ -234,7 +244,7 @@ function edit_mylistpage(){
         temp_db = mylist_db[i].id.split(":");
         thisMylist = temp_db[0];
         thisMylistSong = temp_db[1];
-        console.log("temp_db:",temp_db);
+        //console.log("temp_db:",temp_db);
 
         if(temp_db[0] === beforeName){
           mylist_db[i].id = `${afterName}:${temp_db[1]}`;
@@ -250,7 +260,7 @@ function edit_mylistpage(){
       var httpRequest = new XMLHttpRequest();
 
       var data = JSON.stringify({
-            id: "i_popupMylist",
+            id: "i_mylist",
             sig: "edit_mylist",
             contents: [beforeName, afterName]
             })
@@ -259,23 +269,29 @@ function edit_mylistpage(){
       httpRequest.send(data);
 
     }
+
     document.querySelector('#editBtn').style.color = bColor;
     document.querySelector('#editBtn').style.borderColor = bColor;
     document.querySelector('#editBtn').style.backgroundColor = wColor;
     document.querySelector('#editBtn').value = 'edit';
+
   }
 }
 
-//==========================delete mylist
+//==========================delete mylist(1.mylist 2.mylist songs)
 function delete_mylistpage(){
 
+  //1.mylist screen
   if($('#mylist_pageBtn').css('display') === 'none'){
+
     var checkedMylist = get_checkedMylistBtn();//---> iframe.js function
-    console.log("mylist_pageBtn_____none____:get_checkedMylistBtn();",checkedMylist);
+    //console.log("mylist_pageBtn_____none____:get_checkedMylistBtn();",checkedMylist);
+
     if(checkedMylist.length === 0){
+
       alert("Select list!!!");
-    }
-    else{
+
+    }else{
       for(var i = 0; i < checkedMylist.length; i++){
         //delete mylistSongDic[checkedMylist[i]];
         var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
@@ -286,8 +302,9 @@ function delete_mylistpage(){
           thisMylistSong = temp_db[1];
 
           if(temp_db[0] === checkedMylist[i]){
-            console.log("temp_db_____delete:",temp_db[0]);
+            //console.log("temp_db_____delete:",temp_db[0]);
             mylist_db[j].remove();
+
           }
         }
       }
@@ -299,26 +316,30 @@ function delete_mylistpage(){
     var httpRequest = new XMLHttpRequest();
 
     var data = JSON.stringify({
-          id: "i_popupMylist",
+          id: "i_mylist",
           sig: "delete_mylist",
           contents: checkedMylist
           })
 
     httpRequest.open('POST', 'http://localhost:3000');
     httpRequest.send(data);
+
+  //2.mylist songs screen
   }else{
+
     var checkedMylist = goto_checkedBtn();//---> iframe.js function
-    console.log("mylist_pageBtn_____flex____:goto_checkedBtn();",checkedMylist);
+    //console.log("mylist_pageBtn_____flex____:goto_checkedBtn();",checkedMylist);
 
     var titleBtn = document.querySelector('#mylistTitle');
     var beforeMylist = mylistSongDic[titleBtn.value];
     var afterMylist = [];
-    console.log("beforeMylist:",beforeMylist);
+    //console.log("beforeMylist:",beforeMylist);
 
     if(checkedMylist.length === 0){
+
       alert("Select list!!!");
-    }
-    else{
+
+    }else{
 
       for(var i = 0; i < checkedMylist.length; i++){
         var mylist_db = window.top.$('#top').contents().find(".mylist_db").children();
@@ -326,8 +347,10 @@ function delete_mylistpage(){
           temp_db = mylist_db[j].id.split(":");
 
           if(temp_db[0] === titleBtn.value && temp_db[1] === checkedMylist[i]){
+
             console.log("goto_temp_db_____delete:",temp_db[0],temp_db[1]);
             mylist_db[j].remove();
+
           }
         }
       }
@@ -339,37 +362,32 @@ function delete_mylistpage(){
     var httpRequest = new XMLHttpRequest();
 
     var data = JSON.stringify({
-          id: "i_popupMylist",
+          id: "i_mylist",
           sig: "goto_deleteBtn",
           contents: [titleBtn.value, checkedMylist]
         });
 
     httpRequest.open('POST', 'http://localhost:3000');
     httpRequest.send(data);
+
   }
-
-}
-//========================playbtn(songBtn click->play)
-function play_mylistsongBtn(btn){
-  var song = [];
-  song.push(mynameDic[btn.value].song);
-
-  popupMylist_sig = "goto_playBtn"
-
-  window.parent.postMessage([popupMylist_id,popupMylist_sig,song], 'http://localhost:3000/iframe.html');
-  console.log('checkedMylist:',checkedMylist);
 }
 
-//========================play mylistbtn(mylistBtn click -> play)
+//========================play mylistbtn(1.mylist 2.mylist songs)
 function play_mylistpage(){
 
+  //1.mylist screen
   if($('#mylist_pageBtn').css('display') === 'none'){
+
     var checkedMylist = get_checkedMylistBtn();
     var songs = {};
     var songslist = [];
+
     if (checkedMylist.length === 0){
+
       alert("Select list!!!");
       return 0;
+
     }else{
       for(var i = 0; i < checkedMylist.length; i++){
         for(var j = 0; j < mylistDic[checkedMylist[i]].mysongs.length; j++){
@@ -379,31 +397,49 @@ function play_mylistpage(){
       for(key in songs){
         songslist.push(key);
       }
+
       //popup sig
-      popupMylist_sig = "play_mylistBtn"
-      window.parent.postMessage([popupMylist_id,popupMylist_sig,songslist], 'http://localhost:3000/iframe.html');
-      console.log('songs:',songs,"songslist",songslist);
+      i_mylist_sig = "play_mylistBtn"
+      window.parent.postMessage([i_mylist_id, i_mylist_sig, songslist], 'http://localhost:3000/iframe.html');
+      //console.log('songs:',songs,"songslist",songslist);
     }
-  }
-  else{
+
+  //2.mylist songs screen
+  }else{
+
     var checkedMylist = goto_checkedBtn();
 
     if (checkedMylist.length === 0){
+
       alert("Select song!!!");
       return 0;
-    }
-    else{
+
+    }else{
       //popup sig
-      popupMylist_sig = "goto_playCheckedsong"
-      window.parent.postMessage([popupMylist_id,popupMylist_sig,checkedMylist], 'http://localhost:3000/iframe.html');
-      console.log('checkedMylist:',checkedMylist);
+      i_mylist_sig = "goto_playCheckedsong"
+      window.parent.postMessage([i_mylist_id, i_mylist_sig, checkedMylist], 'http://localhost:3000/iframe.html');
+      //console.log('checkedMylist:',checkedMylist);
     }
   }
+}
+
+//========================playbtn(songBtn click->play)
+function play_mylistsongBtn(btn){
+
+  var song = [];
+
+  song.push(mynameDic[btn.value].song);
+
+  i_mylist_sig = "goto_playBtn"
+
+  window.parent.postMessage([i_mylist_id, i_mylist_sig, song], 'http://localhost:3000/iframe.html');
+  //console.log('checkedMylist:',checkedMylist);
 
 }
 
 //========================go mylistpage
 function go_mylistpage(){
+
   history.go(0);
   //history.back();
   //location.reload();
