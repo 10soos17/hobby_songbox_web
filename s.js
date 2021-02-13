@@ -15,10 +15,8 @@ var app = http.createServer(function(request,response){
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
 
-    var song_list = db_load.get_songData();
-    var mylist_list = db_load.get_mylistData();
-  //  setInterval(db_load.get_songData, 5000);
-  //  setInterval(db_load.get_mylistData, 5000);
+    var TOP_HTML = db_load.get_tophtml();
+    //setInterval(db_load.get_tophtml, 5000);
 
     var clearhtml = db_load.get_data;
     path = decodeURIComponent(path);
@@ -35,54 +33,7 @@ var app = http.createServer(function(request,response){
       return;
     }
     if(pathname === '/top.html'){
-      response.write(`
-        <html>
-          <style>
-            .song_db{
-              font-size: 0px;
-              text-align: left;
-
-              width: 0px;
-
-              white-space:nowrap;
-              overflow:hidden;
-              text-overflow: ellipsis;
-
-              padding:0px;
-              margin-top:0px;
-              margin-left:0px;
-              border:0px;
-
-              background-color: rgb(0,0,0,0);
-              color:rgb(0,0,0,0);
-            }
-            .mylist_db{
-              font-size: 0px;
-              text-align: left;
-
-              width: 0px;
-
-              white-space:nowrap;
-              overflow:hidden;
-              text-overflow: ellipsis;
-
-              padding:0px;
-              margin-top:0px;
-              margin-left:0px;
-              border:0px;
-
-              background-color: rgb(0,0,0,0);
-              color:rgb(0,0,0,0);
-            }
-          </style>
-          <select class="song_db">
-            ${song_list}
-          </select>
-          <select class="mylist_db">
-            ${mylist_list}
-          </select>
-        </html>
-        `);
+      response.write(TOP_HTML);
     }
     if(request.method === "POST"){
       console.log("POST_event___________",);
